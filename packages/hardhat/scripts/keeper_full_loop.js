@@ -1,6 +1,9 @@
+#!/usr/bin/env node
+
 const http = require("http");
 
 // --- START DUMMY SERVER FOR RENDER ---
+// This keeps the Render service alive by listening on a port
 const PORT = process.env.PORT || 3000;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
@@ -13,8 +16,6 @@ server.listen(PORT, () => {
 });
 // --- END DUMMY SERVER ---
 
-// Your existing code starts here...
-#!/usr/bin/env node
 const hre = require("hardhat");
 const { ethers } = hre;
 const { spawn } = require("child_process");
