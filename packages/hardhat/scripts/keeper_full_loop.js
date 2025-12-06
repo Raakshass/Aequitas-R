@@ -1,3 +1,19 @@
+const http = require("http");
+
+// --- START DUMMY SERVER FOR RENDER ---
+const PORT = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/plain");
+  res.end("Keeper is running - Dummy Server active\n");
+});
+
+server.listen(PORT, () => {
+  console.log(`Dummy server listening on port ${PORT} to satisfy Render.`);
+});
+// --- END DUMMY SERVER ---
+
+// Your existing code starts here...
 #!/usr/bin/env node
 const hre = require("hardhat");
 const { ethers } = hre;
