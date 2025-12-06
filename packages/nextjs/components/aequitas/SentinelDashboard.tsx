@@ -99,7 +99,7 @@ const OracleRow = ({
 // 🚀 MAIN COMPONENT: Sentinel Dashboard
 // ==========================================
 export const SentinelDashboard = () => {
-  const { address } = useAccount();
+  const { address: _address } = useAccount();
 
   const { data: blockNumber } = useBlockNumber({ watch: true });
 
