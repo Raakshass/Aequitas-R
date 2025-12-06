@@ -1,0 +1,690 @@
+{
+  "address": "0x009ceEd949BbA9d4ee292D6D29577c5D453D3Fc0",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vault",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_oracle",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_shutter",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        }
+      ],
+      "name": "BatchClosed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        }
+      ],
+      "name": "BatchFinalized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "solver",
+          "type": "address"
+        }
+      ],
+      "name": "BatchProposed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "disputer",
+          "type": "address"
+        }
+      ],
+      "name": "BatchReverted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "BATCH_DURATION",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "CHALLENGE_WINDOW",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MAX_ORACLE_DELAY",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MAX_VOLATILITY_BPS",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "batches",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum AequitasCore.BatchStatus",
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "closeTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "clearingPrice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "solver",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "challengeEndTime",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "closeCurrentBatch",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "currentBatchId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_batchId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_criminal",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_victim",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "disputeBatch",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_batchId",
+          "type": "uint256"
+        }
+      ],
+      "name": "finalizeBatch",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "isBatchFinalized",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "lastValidPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "oracle",
+      "outputs": [
+        {
+          "internalType": "contract IMedianizer",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_batchId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_clearingPrice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_buyers",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_sellers",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "_amounts",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "proposeSettlement",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "shutter",
+      "outputs": [
+        {
+          "internalType": "contract IMockShutter",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "vault",
+      "outputs": [
+        {
+          "internalType": "contract IReversibleVault",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x07f062a1310695dd07fe3e5276c4ccf20ee2bea5c27dc854bd03c0ff9cfdeda9",
+  "receipt": {
+    "to": null,
+    "from": "0xDf3749a818C6799f79DA3440EB8015FDC3Bb5Da8",
+    "contractAddress": "0x009ceEd949BbA9d4ee292D6D29577c5D453D3Fc0",
+    "transactionIndex": 24,
+    "gasUsed": "1218666",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000020000000000000000000880000000000000000000000000000000400000000000000000000000000000000000000000000000000400000000000000020000000000800000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000800000000020000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x8aebb0ac55e72b59e104df25cd19f410e5345abd5dd20f2b8251fd3868c34162",
+    "transactionHash": "0x07f062a1310695dd07fe3e5276c4ccf20ee2bea5c27dc854bd03c0ff9cfdeda9",
+    "logs": [
+      {
+        "transactionIndex": 24,
+        "blockNumber": 9777210,
+        "transactionHash": "0x07f062a1310695dd07fe3e5276c4ccf20ee2bea5c27dc854bd03c0ff9cfdeda9",
+        "address": "0x009ceEd949BbA9d4ee292D6D29577c5D453D3Fc0",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000df3749a818c6799f79da3440eb8015fdc3bb5da8"
+        ],
+        "data": "0x",
+        "logIndex": 55,
+        "blockHash": "0x8aebb0ac55e72b59e104df25cd19f410e5345abd5dd20f2b8251fd3868c34162"
+      }
+    ],
+    "blockNumber": 9777210,
+    "cumulativeGasUsed": "4598353",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x2DC5E2016c1a8189fD09ea697e060F46103f03A4",
+    "0x1Ab8d57324Ca77e4949C154745f94CbFFFdd3F8B",
+    "0x57c776951acaf2686Bb16eFD3160dFB3e2Df654F"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "bff22e7902275af2bc165c399b7b0155",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vault\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_oracle\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_shutter\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReentrancyGuardReentrantCall\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"}],\"name\":\"BatchClosed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"}],\"name\":\"BatchFinalized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"solver\",\"type\":\"address\"}],\"name\":\"BatchProposed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"disputer\",\"type\":\"address\"}],\"name\":\"BatchReverted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"BATCH_DURATION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"CHALLENGE_WINDOW\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_ORACLE_DELAY\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_VOLATILITY_BPS\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"batches\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"enum AequitasCore.BatchStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"closeTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"clearingPrice\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"solver\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"challengeEndTime\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"closeCurrentBatch\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"currentBatchId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_batchId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_criminal\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_victim\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"disputeBatch\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_batchId\",\"type\":\"uint256\"}],\"name\":\"finalizeBatch\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"isBatchFinalized\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastValidPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"oracle\",\"outputs\":[{\"internalType\":\"contract IMedianizer\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_batchId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_clearingPrice\",\"type\":\"uint256\"},{\"internalType\":\"address[]\",\"name\":\"_buyers\",\"type\":\"address[]\"},{\"internalType\":\"address[]\",\"name\":\"_sellers\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_amounts\",\"type\":\"uint256[]\"}],\"name\":\"proposeSettlement\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"shutter\",\"outputs\":[{\"internalType\":\"contract IMockShutter\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"vault\",\"outputs\":[{\"internalType\":\"contract IReversibleVault\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}],\"ReentrancyGuardReentrantCall()\":[{\"details\":\"Unauthorized reentrant call.\"}]},\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"title\":\"AequitasCore\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"The Settlement Engine. Enforces Fair Ordering and Invariants. RUBRIC: - Protocol Architecture: Explicit state machine per batch. - Fair Ordering: FBA-style single clearing price per batch. - Partial Finality: PROPOSED -> FINALIZED with challenge window. - Oracle Manipulation Resistance: Medianizer + deviation guard + staleness check. - Attack Model: Dispute path via disputeBatch.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/AequitasCore.sol\":\"AequitasCore\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is set to the address provided by the deployer. This can\\n * later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    /**\\n     * @dev The caller account is not authorized to perform an operation.\\n     */\\n    error OwnableUnauthorizedAccount(address account);\\n\\n    /**\\n     * @dev The owner is not a valid owner account. (eg. `address(0)`)\\n     */\\n    error OwnableInvalidOwner(address owner);\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the address provided by the deployer as the initial owner.\\n     */\\n    constructor(address initialOwner) {\\n        if (initialOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(initialOwner);\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        if (owner() != _msgSender()) {\\n            revert OwnableUnauthorizedAccount(_msgSender());\\n        }\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby disabling any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        if (newOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.5.0) (utils/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {StorageSlot} from \\\"./StorageSlot.sol\\\";\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If EIP-1153 (transient storage) is available on the chain you're deploying at,\\n * consider using {ReentrancyGuardTransient} instead.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n *\\n * IMPORTANT: Deprecated. This storage-based reentrancy guard will be removed and replaced\\n * by the {ReentrancyGuardTransient} variant in v6.0.\\n *\\n * @custom:stateless\\n */\\nabstract contract ReentrancyGuard {\\n    using StorageSlot for bytes32;\\n\\n    // keccak256(abi.encode(uint256(keccak256(\\\"openzeppelin.storage.ReentrancyGuard\\\")) - 1)) & ~bytes32(uint256(0xff))\\n    bytes32 private constant REENTRANCY_GUARD_STORAGE =\\n        0x9b779b17422d0df92223018b32b4d1fa46e071723d6817e2486d003becc55f00;\\n\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant NOT_ENTERED = 1;\\n    uint256 private constant ENTERED = 2;\\n\\n    /**\\n     * @dev Unauthorized reentrant call.\\n     */\\n    error ReentrancyGuardReentrantCall();\\n\\n    constructor() {\\n        _reentrancyGuardStorageSlot().getUint256Slot().value = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    /**\\n     * @dev A `view` only version of {nonReentrant}. Use to block view functions\\n     * from being called, preventing reading from inconsistent contract state.\\n     *\\n     * CAUTION: This is a \\\"view\\\" modifier and does not change the reentrancy\\n     * status. Use it only on view functions. For payable or non-payable functions,\\n     * use the standard {nonReentrant} modifier instead.\\n     */\\n    modifier nonReentrantView() {\\n        _nonReentrantBeforeView();\\n        _;\\n    }\\n\\n    function _nonReentrantBeforeView() private view {\\n        if (_reentrancyGuardEntered()) {\\n            revert ReentrancyGuardReentrantCall();\\n        }\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be NOT_ENTERED\\n        _nonReentrantBeforeView();\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _reentrancyGuardStorageSlot().getUint256Slot().value = ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _reentrancyGuardStorageSlot().getUint256Slot().value = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Returns true if the reentrancy guard is currently set to \\\"entered\\\", which indicates there is a\\n     * `nonReentrant` function in the call stack.\\n     */\\n    function _reentrancyGuardEntered() internal view returns (bool) {\\n        return _reentrancyGuardStorageSlot().getUint256Slot().value == ENTERED;\\n    }\\n\\n    function _reentrancyGuardStorageSlot() internal pure virtual returns (bytes32) {\\n        return REENTRANCY_GUARD_STORAGE;\\n    }\\n}\\n\",\"keccak256\":\"0xa516cbf1c7d15d3517c2d668601ce016c54395bf5171918a14e2686977465f53\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/StorageSlot.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.1.0) (utils/StorageSlot.sol)\\n// This file was procedurally generated from scripts/generate/templates/StorageSlot.js.\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Library for reading and writing primitive types to specific storage slots.\\n *\\n * Storage slots are often used to avoid storage conflict when dealing with upgradeable contracts.\\n * This library helps with reading and writing to such slots without the need for inline assembly.\\n *\\n * The functions in this library return Slot structs that contain a `value` member that can be used to read or write.\\n *\\n * Example usage to set ERC-1967 implementation slot:\\n * ```solidity\\n * contract ERC1967 {\\n *     // Define the slot. Alternatively, use the SlotDerivation library to derive the slot.\\n *     bytes32 internal constant _IMPLEMENTATION_SLOT = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;\\n *\\n *     function _getImplementation() internal view returns (address) {\\n *         return StorageSlot.getAddressSlot(_IMPLEMENTATION_SLOT).value;\\n *     }\\n *\\n *     function _setImplementation(address newImplementation) internal {\\n *         require(newImplementation.code.length > 0);\\n *         StorageSlot.getAddressSlot(_IMPLEMENTATION_SLOT).value = newImplementation;\\n *     }\\n * }\\n * ```\\n *\\n * TIP: Consider using this library along with {SlotDerivation}.\\n */\\nlibrary StorageSlot {\\n    struct AddressSlot {\\n        address value;\\n    }\\n\\n    struct BooleanSlot {\\n        bool value;\\n    }\\n\\n    struct Bytes32Slot {\\n        bytes32 value;\\n    }\\n\\n    struct Uint256Slot {\\n        uint256 value;\\n    }\\n\\n    struct Int256Slot {\\n        int256 value;\\n    }\\n\\n    struct StringSlot {\\n        string value;\\n    }\\n\\n    struct BytesSlot {\\n        bytes value;\\n    }\\n\\n    /**\\n     * @dev Returns an `AddressSlot` with member `value` located at `slot`.\\n     */\\n    function getAddressSlot(bytes32 slot) internal pure returns (AddressSlot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := slot\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns a `BooleanSlot` with member `value` located at `slot`.\\n     */\\n    function getBooleanSlot(bytes32 slot) internal pure returns (BooleanSlot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := slot\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns a `Bytes32Slot` with member `value` located at `slot`.\\n     */\\n    function getBytes32Slot(bytes32 slot) internal pure returns (Bytes32Slot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := slot\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns a `Uint256Slot` with member `value` located at `slot`.\\n     */\\n    function getUint256Slot(bytes32 slot) internal pure returns (Uint256Slot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := slot\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns a `Int256Slot` with member `value` located at `slot`.\\n     */\\n    function getInt256Slot(bytes32 slot) internal pure returns (Int256Slot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := slot\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns a `StringSlot` with member `value` located at `slot`.\\n     */\\n    function getStringSlot(bytes32 slot) internal pure returns (StringSlot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := slot\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns an `StringSlot` representation of the string storage pointer `store`.\\n     */\\n    function getStringSlot(string storage store) internal pure returns (StringSlot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := store.slot\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns a `BytesSlot` with member `value` located at `slot`.\\n     */\\n    function getBytesSlot(bytes32 slot) internal pure returns (BytesSlot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := slot\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns an `BytesSlot` representation of the bytes storage pointer `store`.\\n     */\\n    function getBytesSlot(bytes storage store) internal pure returns (BytesSlot storage r) {\\n        assembly (\\\"memory-safe\\\") {\\n            r.slot := store.slot\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0xcf74f855663ce2ae00ed8352666b7935f6cddea2932fdf2c3ecd30a9b1cd0e97\",\"license\":\"MIT\"},\"contracts/AequitasCore.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.20;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\n\\r\\n// --- Interfaces ---\\r\\ninterface IReversibleVault {\\r\\n    function internalTransfer(address from, address to, uint256 amount) external;\\r\\n    function revertState(address criminal, address victim, uint256 amount) external;\\r\\n    function unlockFunds(address user, uint256 amount) external;\\r\\n}\\r\\n\\r\\ninterface IMedianizer {\\r\\n    // UPGRADE: Now returns (value, timestamp) to check staleness\\r\\n    function peek() external view returns (uint256, uint256);\\r\\n}\\r\\n\\r\\ninterface IMockShutter {\\r\\n    function hasKey(uint256 batchId) external view returns (bool);\\r\\n}\\r\\n\\r\\n/**\\r\\n * @title AequitasCore\\r\\n * @notice The Settlement Engine. Enforces Fair Ordering and Invariants.\\r\\n *\\r\\n * RUBRIC:\\r\\n * - Protocol Architecture: Explicit state machine per batch.\\r\\n * - Fair Ordering: FBA-style single clearing price per batch.\\r\\n * - Partial Finality: PROPOSED -> FINALIZED with challenge window.\\r\\n * - Oracle Manipulation Resistance: Medianizer + deviation guard + staleness check.\\r\\n * - Attack Model: Dispute path via disputeBatch.\\r\\n */\\r\\ncontract AequitasCore is Ownable, ReentrancyGuard {\\r\\n\\r\\n    // --- State Machine ---\\r\\n    enum BatchStatus { OPEN, CLOSED, PROPOSED, FINALIZED, REVERTED }\\r\\n\\r\\n    struct Batch {\\r\\n        uint256 id;\\r\\n        BatchStatus status;\\r\\n        uint256 closeTime;\\r\\n        uint256 clearingPrice;\\r\\n        address solver;\\r\\n        uint256 challengeEndTime;\\r\\n    }\\r\\n\\r\\n    // --- Configuration ---\\r\\n    // Shortened for Hackathon Demo flow (20 seconds)\\r\\n    uint256 public constant BATCH_DURATION = 20 seconds;\\r\\n    uint256 public constant CHALLENGE_WINDOW = 2 minutes; // Fast finality for demo\\r\\n    \\r\\n    // ADVERSARIAL SAFEGUARDS\\r\\n    uint256 public constant MAX_ORACLE_DELAY = 1 hours; // Reject stale data\\r\\n    uint256 public constant MAX_VOLATILITY_BPS = 2000;  // Max 20% jump per batch\\r\\n    \\r\\n    uint256 public currentBatchId;\\r\\n    uint256 public lastValidPrice; // To track volatility shocks\\r\\n\\r\\n    // --- Dependencies ---\\r\\n    IReversibleVault public vault;\\r\\n    IMedianizer public oracle;\\r\\n    IMockShutter public shutter;\\r\\n\\r\\n    // Batch storage\\r\\n    mapping(uint256 => Batch) public batches;\\r\\n\\r\\n    // Idempotence flag: ensures a batch can only be finalized once\\r\\n    mapping(uint256 => bool) public isBatchFinalized;\\r\\n\\r\\n    // --- Events ---\\r\\n    event BatchClosed(uint256 indexed batchId);\\r\\n    event BatchProposed(uint256 indexed batchId, uint256 price, address solver);\\r\\n    event BatchFinalized(uint256 indexed batchId);\\r\\n    event BatchReverted(uint256 indexed batchId, address disputer);\\r\\n\\r\\n    // --- Modifiers ---\\r\\n    /**\\r\\n     * @dev RUBRIC: \\\"Invariant Enforcement\\\".\\r\\n     * 1. Staleness Check: Oracle data must be fresh.\\r\\n     * 2. Deviation Check: Batch price within 5% of Oracle.\\r\\n     * 3. Volatility Check: Batch price within 20% of Last Valid Price.\\r\\n     */\\r\\n    modifier checkInvariants(uint256 _price) {\\r\\n        (uint256 oraclePrice, uint256 updatedAt) = oracle.peek();\\r\\n        \\r\\n        // 1. STALENESS CHECK\\r\\n        require(block.timestamp >= updatedAt, \\\"Oracle time in future\\\");\\r\\n        require(block.timestamp - updatedAt <= MAX_ORACLE_DELAY, \\\"ORACLE ERROR: Data too stale\\\");\\r\\n\\r\\n        // 2. DEVIATION CHECK\\r\\n        // Allow 5% deviation from Median\\r\\n        uint256 maxDiff = oraclePrice / 20;\\r\\n        if (_price > oraclePrice) {\\r\\n            require(_price - oraclePrice <= maxDiff, \\\"INVARIANT VIOLATION: Price too high vs Oracle\\\");\\r\\n        } else {\\r\\n            require(oraclePrice - _price <= maxDiff, \\\"INVARIANT VIOLATION: Price too low vs Oracle\\\");\\r\\n        }\\r\\n\\r\\n        // 3. VOLATILITY CHECK (Circuit Breaker)\\r\\n        if (lastValidPrice != 0) {\\r\\n            uint256 volatility = (_price > lastValidPrice) \\r\\n                ? _price - lastValidPrice \\r\\n                : lastValidPrice - _price;\\r\\n            \\r\\n            uint256 allowedMove = (lastValidPrice * MAX_VOLATILITY_BPS) / 10000;\\r\\n            require(volatility <= allowedMove, \\\"CIRCUIT BREAKER: Price moved >20%\\\");\\r\\n        }\\r\\n\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor(\\r\\n        address _vault,\\r\\n        address _oracle,\\r\\n        address _shutter\\r\\n    ) Ownable(msg.sender) {\\r\\n        vault = IReversibleVault(_vault);\\r\\n        oracle = IMedianizer(_oracle);\\r\\n        shutter = IMockShutter(_shutter);\\r\\n\\r\\n        // Start Batch #1\\r\\n        currentBatchId = 1;\\r\\n        batches[1].id = 1;\\r\\n        batches[1].status = BatchStatus.OPEN;\\r\\n        batches[1].closeTime = block.timestamp + BATCH_DURATION;\\r\\n    }\\r\\n\\r\\n    // --- Phase 1: Close the Auction ---\\r\\n    function closeCurrentBatch() external {\\r\\n        Batch storage b = batches[currentBatchId];\\r\\n        require(block.timestamp >= b.closeTime, \\\"Too early to close\\\");\\r\\n        require(b.status == BatchStatus.OPEN, \\\"Wrong state\\\");\\r\\n\\r\\n        b.status = BatchStatus.CLOSED;\\r\\n        emit BatchClosed(currentBatchId);\\r\\n    }\\r\\n\\r\\n    // --- Phase 2: Solve (The FBA Logic) ---\\r\\n    function proposeSettlement(\\r\\n        uint256 _batchId,\\r\\n        uint256 _clearingPrice,\\r\\n        address[] calldata _buyers,\\r\\n        address[] calldata _sellers,\\r\\n        uint256[] calldata _amounts\\r\\n    ) external nonReentrant checkInvariants(_clearingPrice) {\\r\\n        Batch storage b = batches[_batchId];\\r\\n\\r\\n        require(!isBatchFinalized[_batchId], \\\"Batch already finalized\\\");\\r\\n        require(b.status == BatchStatus.CLOSED, \\\"Batch not closed\\\");\\r\\n\\r\\n        // ENCRYPTION GATE: Threshold network has released key\\r\\n        require(shutter.hasKey(_batchId), \\\"Encryption key not published\\\");\\r\\n\\r\\n        require(\\r\\n            _buyers.length == _sellers.length && _buyers.length == _amounts.length,\\r\\n            \\\"Length mismatch\\\"\\r\\n        );\\r\\n\\r\\n        // Execute Transfers (Optimistic internal settlement)\\r\\n        for (uint256 i = 0; i < _buyers.length; i++) {\\r\\n            vault.internalTransfer(_buyers[i], _sellers[i], _amounts[i]);\\r\\n        }\\r\\n\\r\\n        b.status = BatchStatus.PROPOSED;\\r\\n        b.clearingPrice = _clearingPrice;\\r\\n        b.solver = msg.sender;\\r\\n        b.challengeEndTime = block.timestamp + CHALLENGE_WINDOW;\\r\\n\\r\\n        // Update Circuit Breaker Baseline\\r\\n        lastValidPrice = _clearingPrice;\\r\\n\\r\\n        emit BatchProposed(_batchId, _clearingPrice, msg.sender);\\r\\n    }\\r\\n\\r\\n    // --- Phase 3: Finalize (The Lock Release) ---\\r\\n    function finalizeBatch(uint256 _batchId) external {\\r\\n        Batch storage b = batches[_batchId];\\r\\n\\r\\n        require(b.status == BatchStatus.PROPOSED, \\\"Not proposed\\\");\\r\\n        require(!isBatchFinalized[_batchId], \\\"Already finalized\\\");\\r\\n        require(block.timestamp > b.challengeEndTime, \\\"Still in challenge window\\\");\\r\\n\\r\\n        isBatchFinalized[_batchId] = true;\\r\\n        b.status = BatchStatus.FINALIZED;\\r\\n\\r\\n        // Open the next batch\\r\\n        currentBatchId++;\\r\\n        batches[currentBatchId].id = currentBatchId;\\r\\n        batches[currentBatchId].status = BatchStatus.OPEN;\\r\\n        batches[currentBatchId].closeTime = block.timestamp + BATCH_DURATION;\\r\\n\\r\\n        emit BatchFinalized(_batchId);\\r\\n    }\\r\\n\\r\\n    // --- Phase 4: Dispute (The Eraser) ---\\r\\n    function disputeBatch(\\r\\n        uint256 _batchId,\\r\\n        address _criminal,\\r\\n        address _victim,\\r\\n        uint256 _amount\\r\\n    ) external {\\r\\n        Batch storage b = batches[_batchId];\\r\\n\\r\\n        require(!isBatchFinalized[_batchId], \\\"Cannot dispute finalized batch\\\");\\r\\n        require(b.status == BatchStatus.PROPOSED, \\\"Cannot dispute unproposed batch\\\");\\r\\n\\r\\n        vault.revertState(_criminal, _victim, _amount);\\r\\n\\r\\n        b.status = BatchStatus.REVERTED;\\r\\n\\r\\n        emit BatchReverted(_batchId, msg.sender);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x6c76bd42edb1fd36764672d3b9481f03cccd13d693e98468adbca101a670c04f\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b50604051620013f3380380620013f38339810160408190526200003491620001d2565b33806200005b57604051631e4fbdf760e01b81526000600482015260240160405180910390fd5b620000668162000165565b5060017f9b779b17422d0df92223018b32b4d1fa46e071723d6817e2486d003becc55f0055600380546001600160a01b038581166001600160a01b0319928316179092556004805485841690831617905560058054928416929091169190911790556001808055600081905260066020527f3e5fec24aa4dc4e5aee2e025e51e1392c72a2500577559fae9665c6d52bd6a31557f3e5fec24aa4dc4e5aee2e025e51e1392c72a2500577559fae9665c6d52bd6a32805460ff191690556200012f6014426200021c565b600160005260066020527f3e5fec24aa4dc4e5aee2e025e51e1392c72a2500577559fae9665c6d52bd6a33555062000244915050565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b80516001600160a01b0381168114620001cd57600080fd5b919050565b600080600060608486031215620001e857600080fd5b620001f384620001b5565b92506200020360208501620001b5565b91506200021360408501620001b5565b90509250925092565b808201808211156200023e57634e487b7160e01b600052601160045260246000fd5b92915050565b61119f80620002546000396000f3fe608060405234801561001057600080fd5b50600436106101165760003560e01c80637dc0d1d0116100a2578063c6d3107f11610071578063c6d3107f14610270578063d62aad2914610279578063e33491a714610281578063f2fde38b14610294578063fbfa77cf146102a757600080fd5b80637dc0d1d0146101d45780638da5cb5b146101e7578063b32c4d8d146101f8578063b6d9d0831461025d57600080fd5b80632d93e4db116100e95780632d93e4db1461018857806339bad30b146101905780635cb17fa1146101995780635ec08d99146101c4578063715018a6146101cc57600080fd5b80630a763da11461011b578063116a1f421461013757806316103db21461016a57806316871f0f1461017f575b600080fd5b61012460015481565b6040519081526020015b60405180910390f35b61015a610145366004610e79565b60076020526000908152604090205460ff1681565b604051901515815260200161012e565b61017d610178366004610eae565b6102ba565b005b61012460025481565b610124601481565b6101246107d081565b6005546101ac906001600160a01b031681565b6040516001600160a01b03909116815260200161012e565b61017d61044a565b61017d610536565b6004546101ac906001600160a01b031681565b6000546001600160a01b03166101ac565b61024b610206366004610e79565b600660205260009081526040902080546001820154600283015460038401546004850154600590950154939460ff90931693919290916001600160a01b039091169086565b60405161012e96959493929190610f08565b61017d61026b366004610faa565b61054a565b610124610e1081565b610124607881565b61017d61028f366004610e79565b610b9a565b61017d6102a2366004611057565b610d4e565b6003546101ac906001600160a01b031681565b600084815260066020908152604080832060079092529091205460ff16156103295760405162461bcd60e51b815260206004820152601e60248201527f43616e6e6f7420646973707574652066696e616c697a6564206261746368000060448201526064015b60405180910390fd5b6002600182015460ff16600481111561034457610344610ef2565b146103915760405162461bcd60e51b815260206004820152601f60248201527f43616e6e6f74206469737075746520756e70726f706f736564206261746368006044820152606401610320565b6003546040516325dce4e960e21b81526001600160a01b0386811660048301528581166024830152604482018590529091169063977393a490606401600060405180830381600087803b1580156103e757600080fd5b505af11580156103fb573d6000803e3d6000fd5b5050505060018101805460ff1916600417905560405133815285907f9fea5af43e23e2b816e4341109de823c34a42f1ea11c8b55652963dbe50e40ac9060200160405180910390a25050505050565b600154600090815260066020526040902060028101544210156104a45760405162461bcd60e51b8152602060048201526012602482015271546f6f206561726c7920746f20636c6f736560701b6044820152606401610320565b6000600182015460ff1660048111156104bf576104bf610ef2565b146104fa5760405162461bcd60e51b815260206004820152600b60248201526a57726f6e6720737461746560a81b6044820152606401610320565b6001818101805460ff191682179055546040517f0d12a96208f78b6b173d4bc5f7de1d8a9377c4e33639c8ef954056f7d350858790600090a250565b61053e610d8c565b6105486000610db9565b565b610552610e09565b86600080600460009054906101000a90046001600160a01b03166001600160a01b03166359e02dd76040518163ffffffff1660e01b81526004016040805180830381865afa1580156105a8573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906105cc9190611079565b91509150804210156106185760405162461bcd60e51b81526020600482015260156024820152744f7261636c652074696d6520696e2066757475726560581b6044820152606401610320565b610e1061062582426110b3565b11156106735760405162461bcd60e51b815260206004820152601c60248201527f4f5241434c45204552524f523a204461746120746f6f207374616c65000000006044820152606401610320565b60006106806014846110cc565b9050828411156106fe578061069584866110b3565b11156106f95760405162461bcd60e51b815260206004820152602d60248201527f494e56415249414e542056494f4c4154494f4e3a20507269636520746f6f206860448201526c696768207673204f7261636c6560981b6064820152608401610320565b61076c565b8061070985856110b3565b111561076c5760405162461bcd60e51b815260206004820152602c60248201527f494e56415249414e542056494f4c4154494f4e3a20507269636520746f6f206c60448201526b6f77207673204f7261636c6560a01b6064820152608401610320565b6002541561081f5760006002548511610792578460025461078d91906110b3565b61079f565b60025461079f90866110b3565b905060006127106107d06002546107b691906110ee565b6107c091906110cc565b90508082111561081c5760405162461bcd60e51b815260206004820152602160248201527f4349524355495420425245414b45523a205072696365206d6f766564203e32306044820152602560f81b6064820152608401610320565b50505b60008c815260066020908152604080832060079092529091205460ff16156108895760405162461bcd60e51b815260206004820152601760248201527f426174636820616c72656164792066696e616c697a65640000000000000000006044820152606401610320565b60018082015460ff1660048111156108a3576108a3610ef2565b146108e35760405162461bcd60e51b815260206004820152601060248201526f10985d18da081b9bdd0818db1bdcd95960821b6044820152606401610320565b6005546040516348e612ef60e11b8152600481018f90526001600160a01b03909116906391cc25de90602401602060405180830381865afa15801561092c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109509190611105565b61099c5760405162461bcd60e51b815260206004820152601c60248201527f456e6372797074696f6e206b6579206e6f74207075626c6973686564000000006044820152606401610320565b89881480156109aa57508986145b6109e85760405162461bcd60e51b815260206004820152600f60248201526e098cadccee8d040dad2e6dac2e8c6d608b1b6044820152606401610320565b60005b8a811015610ae6576003546001600160a01b03166359e026f78d8d84818110610a1657610a16611127565b9050602002016020810190610a2b9190611057565b8c8c85818110610a3d57610a3d611127565b9050602002016020810190610a529190611057565b8b8b86818110610a6457610a64611127565b6040516001600160e01b031960e088901b1681526001600160a01b03958616600482015294909316602485015250602090910201356044820152606401600060405180830381600087803b158015610abb57600080fd5b505af1158015610acf573d6000803e3d6000fd5b505050508080610ade9061113d565b9150506109eb565b5060018101805460ff19166002179055600381018c9055600481018054336001600160a01b0319909116179055610b1e607842611156565b600582015560028c9055604080518d81523360208201528e917f2126df51d73aba69682729830e1551681ac74b3200556076a001b3ea9898390d910160405180910390a25050505050610b9060017f9b779b17422d0df92223018b32b4d1fa46e071723d6817e2486d003becc55f0055565b5050505050505050565b60008181526006602052604090206002600182015460ff166004811115610bc357610bc3610ef2565b14610bff5760405162461bcd60e51b815260206004820152600c60248201526b139bdd081c1c9bdc1bdcd95960a21b6044820152606401610320565b60008281526007602052604090205460ff1615610c525760405162461bcd60e51b8152602060048201526011602482015270105b1c9958591e48199a5b985b1a5e9959607a1b6044820152606401610320565b80600501544211610ca55760405162461bcd60e51b815260206004820152601960248201527f5374696c6c20696e206368616c6c656e67652077696e646f77000000000000006044820152606401610320565b6000828152600760205260408120805460ff19908116600190811790925583820180549091166003179055805491610cdc8361113d565b909155505060018054600081815260066020526040902090815501805460ff19169055610d0a601442611156565b60015460009081526006602052604080822060020192909255905183917f5cff112f1cb588779b4e6aae6baf0d738747fcf132f0ff202adcec605f9cabdf91a25050565b610d56610d8c565b6001600160a01b038116610d8057604051631e4fbdf760e01b815260006004820152602401610320565b610d8981610db9565b50565b6000546001600160a01b031633146105485760405163118cdaa760e01b8152336004820152602401610320565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b610e11610e37565b60027f9b779b17422d0df92223018b32b4d1fa46e071723d6817e2486d003becc55f0055565b7f9b779b17422d0df92223018b32b4d1fa46e071723d6817e2486d003becc55f005460020361054857604051633ee5aeb560e01b815260040160405180910390fd5b600060208284031215610e8b57600080fd5b5035919050565b80356001600160a01b0381168114610ea957600080fd5b919050565b60008060008060808587031215610ec457600080fd5b84359350610ed460208601610e92565b9250610ee260408601610e92565b9396929550929360600135925050565b634e487b7160e01b600052602160045260246000fd5b86815260c0810160058710610f2d57634e487b7160e01b600052602160045260246000fd5b6020820196909652604081019490945260608401929092526001600160a01b0316608083015260a090910152919050565b60008083601f840112610f7057600080fd5b50813567ffffffffffffffff811115610f8857600080fd5b6020830191508360208260051b8501011115610fa357600080fd5b9250929050565b60008060008060008060008060a0898b031215610fc657600080fd5b8835975060208901359650604089013567ffffffffffffffff80821115610fec57600080fd5b610ff88c838d01610f5e565b909850965060608b013591508082111561101157600080fd5b61101d8c838d01610f5e565b909650945060808b013591508082111561103657600080fd5b506110438b828c01610f5e565b999c989b5096995094979396929594505050565b60006020828403121561106957600080fd5b61107282610e92565b9392505050565b6000806040838503121561108c57600080fd5b505080516020909101519092909150565b634e487b7160e01b600052601160045260246000fd5b818103818111156110c6576110c661109d565b92915050565b6000826110e957634e487b7160e01b600052601260045260246000fd5b500490565b80820281158282048414176110c6576110c661109d565b60006020828403121561111757600080fd5b8151801515811461107257600080fd5b634e487b7160e01b600052603260045260246000fd5b60006001820161114f5761114f61109d565b5060010190565b808201808211156110c6576110c661109d56fea2646970667358221220b3ae27ce4398be8a36a52627e7e43410299fa2c36756f99f6bec3c1373aa9ecd64736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106101165760003560e01c80637dc0d1d0116100a2578063c6d3107f11610071578063c6d3107f14610270578063d62aad2914610279578063e33491a714610281578063f2fde38b14610294578063fbfa77cf146102a757600080fd5b80637dc0d1d0146101d45780638da5cb5b146101e7578063b32c4d8d146101f8578063b6d9d0831461025d57600080fd5b80632d93e4db116100e95780632d93e4db1461018857806339bad30b146101905780635cb17fa1146101995780635ec08d99146101c4578063715018a6146101cc57600080fd5b80630a763da11461011b578063116a1f421461013757806316103db21461016a57806316871f0f1461017f575b600080fd5b61012460015481565b6040519081526020015b60405180910390f35b61015a610145366004610e79565b60076020526000908152604090205460ff1681565b604051901515815260200161012e565b61017d610178366004610eae565b6102ba565b005b61012460025481565b610124601481565b6101246107d081565b6005546101ac906001600160a01b031681565b6040516001600160a01b03909116815260200161012e565b61017d61044a565b61017d610536565b6004546101ac906001600160a01b031681565b6000546001600160a01b03166101ac565b61024b610206366004610e79565b600660205260009081526040902080546001820154600283015460038401546004850154600590950154939460ff90931693919290916001600160a01b039091169086565b60405161012e96959493929190610f08565b61017d61026b366004610faa565b61054a565b610124610e1081565b610124607881565b61017d61028f366004610e79565b610b9a565b61017d6102a2366004611057565b610d4e565b6003546101ac906001600160a01b031681565b600084815260066020908152604080832060079092529091205460ff16156103295760405162461bcd60e51b815260206004820152601e60248201527f43616e6e6f7420646973707574652066696e616c697a6564206261746368000060448201526064015b60405180910390fd5b6002600182015460ff16600481111561034457610344610ef2565b146103915760405162461bcd60e51b815260206004820152601f60248201527f43616e6e6f74206469737075746520756e70726f706f736564206261746368006044820152606401610320565b6003546040516325dce4e960e21b81526001600160a01b0386811660048301528581166024830152604482018590529091169063977393a490606401600060405180830381600087803b1580156103e757600080fd5b505af11580156103fb573d6000803e3d6000fd5b5050505060018101805460ff1916600417905560405133815285907f9fea5af43e23e2b816e4341109de823c34a42f1ea11c8b55652963dbe50e40ac9060200160405180910390a25050505050565b600154600090815260066020526040902060028101544210156104a45760405162461bcd60e51b8152602060048201526012602482015271546f6f206561726c7920746f20636c6f736560701b6044820152606401610320565b6000600182015460ff1660048111156104bf576104bf610ef2565b146104fa5760405162461bcd60e51b815260206004820152600b60248201526a57726f6e6720737461746560a81b6044820152606401610320565b6001818101805460ff191682179055546040517f0d12a96208f78b6b173d4bc5f7de1d8a9377c4e33639c8ef954056f7d350858790600090a250565b61053e610d8c565b6105486000610db9565b565b610552610e09565b86600080600460009054906101000a90046001600160a01b03166001600160a01b03166359e02dd76040518163ffffffff1660e01b81526004016040805180830381865afa1580156105a8573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906105cc9190611079565b91509150804210156106185760405162461bcd60e51b81526020600482015260156024820152744f7261636c652074696d6520696e2066757475726560581b6044820152606401610320565b610e1061062582426110b3565b11156106735760405162461bcd60e51b815260206004820152601c60248201527f4f5241434c45204552524f523a204461746120746f6f207374616c65000000006044820152606401610320565b60006106806014846110cc565b9050828411156106fe578061069584866110b3565b11156106f95760405162461bcd60e51b815260206004820152602d60248201527f494e56415249414e542056494f4c4154494f4e3a20507269636520746f6f206860448201526c696768207673204f7261636c6560981b6064820152608401610320565b61076c565b8061070985856110b3565b111561076c5760405162461bcd60e51b815260206004820152602c60248201527f494e56415249414e542056494f4c4154494f4e3a20507269636520746f6f206c60448201526b6f77207673204f7261636c6560a01b6064820152608401610320565b6002541561081f5760006002548511610792578460025461078d91906110b3565b61079f565b60025461079f90866110b3565b905060006127106107d06002546107b691906110ee565b6107c091906110cc565b90508082111561081c5760405162461bcd60e51b815260206004820152602160248201527f4349524355495420425245414b45523a205072696365206d6f766564203e32306044820152602560f81b6064820152608401610320565b50505b60008c815260066020908152604080832060079092529091205460ff16156108895760405162461bcd60e51b815260206004820152601760248201527f426174636820616c72656164792066696e616c697a65640000000000000000006044820152606401610320565b60018082015460ff1660048111156108a3576108a3610ef2565b146108e35760405162461bcd60e51b815260206004820152601060248201526f10985d18da081b9bdd0818db1bdcd95960821b6044820152606401610320565b6005546040516348e612ef60e11b8152600481018f90526001600160a01b03909116906391cc25de90602401602060405180830381865afa15801561092c573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109509190611105565b61099c5760405162461bcd60e51b815260206004820152601c60248201527f456e6372797074696f6e206b6579206e6f74207075626c6973686564000000006044820152606401610320565b89881480156109aa57508986145b6109e85760405162461bcd60e51b815260206004820152600f60248201526e098cadccee8d040dad2e6dac2e8c6d608b1b6044820152606401610320565b60005b8a811015610ae6576003546001600160a01b03166359e026f78d8d84818110610a1657610a16611127565b9050602002016020810190610a2b9190611057565b8c8c85818110610a3d57610a3d611127565b9050602002016020810190610a529190611057565b8b8b86818110610a6457610a64611127565b6040516001600160e01b031960e088901b1681526001600160a01b03958616600482015294909316602485015250602090910201356044820152606401600060405180830381600087803b158015610abb57600080fd5b505af1158015610acf573d6000803e3d6000fd5b505050508080610ade9061113d565b9150506109eb565b5060018101805460ff19166002179055600381018c9055600481018054336001600160a01b0319909116179055610b1e607842611156565b600582015560028c9055604080518d81523360208201528e917f2126df51d73aba69682729830e1551681ac74b3200556076a001b3ea9898390d910160405180910390a25050505050610b9060017f9b779b17422d0df92223018b32b4d1fa46e071723d6817e2486d003becc55f0055565b5050505050505050565b60008181526006602052604090206002600182015460ff166004811115610bc357610bc3610ef2565b14610bff5760405162461bcd60e51b815260206004820152600c60248201526b139bdd081c1c9bdc1bdcd95960a21b6044820152606401610320565b60008281526007602052604090205460ff1615610c525760405162461bcd60e51b8152602060048201526011602482015270105b1c9958591e48199a5b985b1a5e9959607a1b6044820152606401610320565b80600501544211610ca55760405162461bcd60e51b815260206004820152601960248201527f5374696c6c20696e206368616c6c656e67652077696e646f77000000000000006044820152606401610320565b6000828152600760205260408120805460ff19908116600190811790925583820180549091166003179055805491610cdc8361113d565b909155505060018054600081815260066020526040902090815501805460ff19169055610d0a601442611156565b60015460009081526006602052604080822060020192909255905183917f5cff112f1cb588779b4e6aae6baf0d738747fcf132f0ff202adcec605f9cabdf91a25050565b610d56610d8c565b6001600160a01b038116610d8057604051631e4fbdf760e01b815260006004820152602401610320565b610d8981610db9565b50565b6000546001600160a01b031633146105485760405163118cdaa760e01b8152336004820152602401610320565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b610e11610e37565b60027f9b779b17422d0df92223018b32b4d1fa46e071723d6817e2486d003becc55f0055565b7f9b779b17422d0df92223018b32b4d1fa46e071723d6817e2486d003becc55f005460020361054857604051633ee5aeb560e01b815260040160405180910390fd5b600060208284031215610e8b57600080fd5b5035919050565b80356001600160a01b0381168114610ea957600080fd5b919050565b60008060008060808587031215610ec457600080fd5b84359350610ed460208601610e92565b9250610ee260408601610e92565b9396929550929360600135925050565b634e487b7160e01b600052602160045260246000fd5b86815260c0810160058710610f2d57634e487b7160e01b600052602160045260246000fd5b6020820196909652604081019490945260608401929092526001600160a01b0316608083015260a090910152919050565b60008083601f840112610f7057600080fd5b50813567ffffffffffffffff811115610f8857600080fd5b6020830191508360208260051b8501011115610fa357600080fd5b9250929050565b60008060008060008060008060a0898b031215610fc657600080fd5b8835975060208901359650604089013567ffffffffffffffff80821115610fec57600080fd5b610ff88c838d01610f5e565b909850965060608b013591508082111561101157600080fd5b61101d8c838d01610f5e565b909650945060808b013591508082111561103657600080fd5b506110438b828c01610f5e565b999c989b5096995094979396929594505050565b60006020828403121561106957600080fd5b61107282610e92565b9392505050565b6000806040838503121561108c57600080fd5b505080516020909101519092909150565b634e487b7160e01b600052601160045260246000fd5b818103818111156110c6576110c661109d565b92915050565b6000826110e957634e487b7160e01b600052601260045260246000fd5b500490565b80820281158282048414176110c6576110c661109d565b60006020828403121561111757600080fd5b8151801515811461107257600080fd5b634e487b7160e01b600052603260045260246000fd5b60006001820161114f5761114f61109d565b5060010190565b808201808211156110c6576110c661109d56fea2646970667358221220b3ae27ce4398be8a36a52627e7e43410299fa2c36756f99f6bec3c1373aa9ecd64736f6c63430008140033",
+  "devdoc": {
+    "errors": {
+      "OwnableInvalidOwner(address)": [
+        {
+          "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+        }
+      ],
+      "OwnableUnauthorizedAccount(address)": [
+        {
+          "details": "The caller account is not authorized to perform an operation."
+        }
+      ],
+      "ReentrancyGuardReentrantCall()": [
+        {
+          "details": "Unauthorized reentrant call."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "title": "AequitasCore",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "The Settlement Engine. Enforces Fair Ordering and Invariants. RUBRIC: - Protocol Architecture: Explicit state machine per batch. - Fair Ordering: FBA-style single clearing price per batch. - Partial Finality: PROPOSED -> FINALIZED with challenge window. - Oracle Manipulation Resistance: Medianizer + deviation guard + staleness check. - Attack Model: Dispute path via disputeBatch.",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 8,
+        "contract": "contracts/AequitasCore.sol:AequitasCore",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 499,
+        "contract": "contracts/AequitasCore.sol:AequitasCore",
+        "label": "currentBatchId",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 501,
+        "contract": "contracts/AequitasCore.sol:AequitasCore",
+        "label": "lastValidPrice",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 504,
+        "contract": "contracts/AequitasCore.sol:AequitasCore",
+        "label": "vault",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_contract(IReversibleVault)444"
+      },
+      {
+        "astId": 507,
+        "contract": "contracts/AequitasCore.sol:AequitasCore",
+        "label": "oracle",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_contract(IMedianizer)452"
+      },
+      {
+        "astId": 510,
+        "contract": "contracts/AequitasCore.sol:AequitasCore",
+        "label": "shutter",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_contract(IMockShutter)460"
+      },
+      {
+        "astId": 515,
+        "contract": "contracts/AequitasCore.sol:AequitasCore",
+        "label": "batches",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_mapping(t_uint256,t_struct(Batch)485_storage)"
+      },
+      {
+        "astId": 519,
+        "contract": "contracts/AequitasCore.sol:AequitasCore",
+        "label": "isBatchFinalized",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_mapping(t_uint256,t_bool)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_contract(IMedianizer)452": {
+        "encoding": "inplace",
+        "label": "contract IMedianizer",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IMockShutter)460": {
+        "encoding": "inplace",
+        "label": "contract IMockShutter",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IReversibleVault)444": {
+        "encoding": "inplace",
+        "label": "contract IReversibleVault",
+        "numberOfBytes": "20"
+      },
+      "t_enum(BatchStatus)471": {
+        "encoding": "inplace",
+        "label": "enum AequitasCore.BatchStatus",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_uint256,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_uint256,t_struct(Batch)485_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct AequitasCore.Batch)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Batch)485_storage"
+      },
+      "t_struct(Batch)485_storage": {
+        "encoding": "inplace",
+        "label": "struct AequitasCore.Batch",
+        "members": [
+          {
+            "astId": 473,
+            "contract": "contracts/AequitasCore.sol:AequitasCore",
+            "label": "id",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 476,
+            "contract": "contracts/AequitasCore.sol:AequitasCore",
+            "label": "status",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_enum(BatchStatus)471"
+          },
+          {
+            "astId": 478,
+            "contract": "contracts/AequitasCore.sol:AequitasCore",
+            "label": "closeTime",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 480,
+            "contract": "contracts/AequitasCore.sol:AequitasCore",
+            "label": "clearingPrice",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 482,
+            "contract": "contracts/AequitasCore.sol:AequitasCore",
+            "label": "solver",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_address"
+          },
+          {
+            "astId": 484,
+            "contract": "contracts/AequitasCore.sol:AequitasCore",
+            "label": "challengeEndTime",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "192"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

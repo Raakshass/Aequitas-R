@@ -1,0 +1,369 @@
+{
+  "address": "0x6D8f6eE3C87f2e5Fbd3f283cf6681b01531De4Be",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_core",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_shutter",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_callerRewardWei",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newRewardWei",
+          "type": "uint256"
+        }
+      ],
+      "name": "CallerRewardChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        }
+      ],
+      "name": "CloseTriggered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        }
+      ],
+      "name": "FinalizeTriggered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        }
+      ],
+      "name": "KeyPublished",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnerChanged",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "callerRewardWei",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "core",
+      "outputs": [
+        {
+          "internalType": "contract IAequitasCore",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "keeperNudge",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_wei",
+          "type": "uint256"
+        }
+      ],
+      "name": "setCallerReward",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_new",
+          "type": "address"
+        }
+      ],
+      "name": "setOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "shutter",
+      "outputs": [
+        {
+          "internalType": "contract IMockShutter",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "triggerCloseIfNeeded",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "ok",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        }
+      ],
+      "name": "triggerFinalizeIfNeeded",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "name": "triggerPublishKeyIfMissing",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0xa70248452e002a662fa9578f2ef78d34c0611dc89d73ef5f0e02af57bb6c9ea7",
+  "receipt": {
+    "to": null,
+    "from": "0xDf3749a818C6799f79DA3440EB8015FDC3Bb5Da8",
+    "contractAddress": "0x6D8f6eE3C87f2e5Fbd3f283cf6681b01531De4Be",
+    "transactionIndex": 30,
+    "gasUsed": "1024306",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x2038b0cb314ccd754f793af4392a2bc7140b02b02bb516d1d552997845104259",
+    "transactionHash": "0xa70248452e002a662fa9578f2ef78d34c0611dc89d73ef5f0e02af57bb6c9ea7",
+    "logs": [],
+    "blockNumber": 9777213,
+    "cumulativeGasUsed": "4305321",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x009ceEd949BbA9d4ee292D6D29577c5D453D3Fc0",
+    "0x57c776951acaf2686Bb16eFD3160dFB3e2Df654F",
+    0
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "f2f7bd57d2feaff54f73c68fb294e6ef",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_core\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_shutter\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_callerRewardWei\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newRewardWei\",\"type\":\"uint256\"}],\"name\":\"CallerRewardChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"}],\"name\":\"CloseTriggered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"}],\"name\":\"FinalizeTriggered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"}],\"name\":\"KeyPublished\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnerChanged\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"callerRewardWei\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"core\",\"outputs\":[{\"internalType\":\"contract IAequitasCore\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"keeperNudge\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_wei\",\"type\":\"uint256\"}],\"name\":\"setCallerReward\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_new\",\"type\":\"address\"}],\"name\":\"setOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"shutter\",\"outputs\":[{\"internalType\":\"contract IMockShutter\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"triggerCloseIfNeeded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"ok\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"}],\"name\":\"triggerFinalizeIfNeeded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"}],\"name\":\"triggerPublishKeyIfMissing\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"details\":\"Lightweight on-chain keeper helper that allows anyone to trigger close/publish/finalize\",\"kind\":\"dev\",\"methods\":{\"keeperNudge()\":{\"details\":\"UPDATED: Non-reverting version. If time conditions aren't met, returns false.\"}},\"title\":\"KeeperFallback\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"keeperNudge()\":{\"notice\":\"----------------------------------------------------------------------- \\ud83d\\udd01 Single entry-point used by the Sentinel UI: keeperNudge() ----------------------------------------------------------------------- It inspects the current batch and:  - if OPEN      -> closes it (only if closeTime passed)  - if CLOSED    -> publishes key (if missing)  - if PROPOSED  -> finalizes (only if challenge window passed) Returns true if it actually did something, false if it was a no-op.\"},\"setCallerReward(uint256)\":{\"notice\":\"Set reward for callers who trigger actions (owner only).\"},\"setOwner(address)\":{\"notice\":\"Allow owner to change owner\"},\"triggerCloseIfNeeded()\":{\"notice\":\"Try to close the current batch if it's open and closeTime passed. Anyone can call; pays reward to caller if configured and available.\"},\"triggerFinalizeIfNeeded(uint256)\":{\"notice\":\"Finalize a proposed batch once the challenge window expired.\"},\"triggerPublishKeyIfMissing(uint256,string)\":{\"notice\":\"Publish key if batch is CLOSED and key doesn't exist. Caller provides the key string.\"},\"withdraw(uint256)\":{\"notice\":\"Withdraw ETH from contract (owner)\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/KeeperFallback.sol\":\"KeeperFallback\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/KeeperFallback.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\n/// @notice Minimal interfaces for the Aequitas contracts we need to call\\r\\ninterface IAequitasCore {\\r\\n    function currentBatchId() external view returns (uint256);\\r\\n    // Batch struct: (id, status, closeTime, clearingPrice, solver, challengeEndTime)\\r\\n    function batches(uint256) external view returns (\\r\\n        uint256 id, uint8 status, uint256 closeTime, uint256 clearingPrice, address solver, uint256 challengeEndTime\\r\\n    );\\r\\n    function closeCurrentBatch() external;\\r\\n    function finalizeBatch(uint256 batchId) external;\\r\\n}\\r\\n\\r\\ninterface IMockShutter {\\r\\n    function hasKey(uint256 batchId) external view returns (bool);\\r\\n    function publishKey(uint256 batchId, string calldata key) external;\\r\\n}\\r\\n\\r\\n/// @title KeeperFallback\\r\\n/// @dev Lightweight on-chain keeper helper that allows anyone to trigger close/publish/finalize\\r\\ncontract KeeperFallback {\\r\\n    IAequitasCore public immutable core;\\r\\n    IMockShutter public immutable shutter;\\r\\n    address public owner;\\r\\n    uint256 public callerRewardWei; // optional reward for the caller (in wei)\\r\\n\\r\\n    event CloseTriggered(uint256 indexed batchId, address indexed caller);\\r\\n    event KeyPublished(uint256 indexed batchId, address indexed caller);\\r\\n    event FinalizeTriggered(uint256 indexed batchId, address indexed caller);\\r\\n    event CallerRewardChanged(uint256 newRewardWei);\\r\\n    event OwnerChanged(address newOwner);\\r\\n\\r\\n    modifier onlyOwner() {\\r\\n        require(msg.sender == owner, \\\"only owner\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor(address _core, address _shutter, uint256 _callerRewardWei) {\\r\\n        require(_core != address(0) && _shutter != address(0), \\\"zero address\\\");\\r\\n        core = IAequitasCore(_core);\\r\\n        shutter = IMockShutter(_shutter);\\r\\n        owner = msg.sender;\\r\\n        callerRewardWei = _callerRewardWei;\\r\\n    }\\r\\n\\r\\n    /// @notice Set reward for callers who trigger actions (owner only).\\r\\n    function setCallerReward(uint256 _wei) external onlyOwner {\\r\\n        callerRewardWei = _wei;\\r\\n        emit CallerRewardChanged(_wei);\\r\\n    }\\r\\n\\r\\n    /// @notice Allow owner to change owner\\r\\n    function setOwner(address _new) external onlyOwner {\\r\\n        require(_new != address(0), \\\"zero\\\");\\r\\n        owner = _new;\\r\\n        emit OwnerChanged(_new);\\r\\n    }\\r\\n\\r\\n    /// @notice Deposit ETH so the contract can pay caller rewards\\r\\n    receive() external payable {}\\r\\n\\r\\n    /// @notice Withdraw ETH from contract (owner)\\r\\n    function withdraw(uint256 amount) external onlyOwner {\\r\\n        payable(owner).transfer(amount);\\r\\n    }\\r\\n\\r\\n    /// -----------------------------------------------------------------------\\r\\n    /// \\ud83d\\udd01 Single entry-point used by the Sentinel UI: keeperNudge()\\r\\n    /// -----------------------------------------------------------------------\\r\\n    /// It inspects the current batch and:\\r\\n    ///  - if OPEN      -> closes it (only if closeTime passed)\\r\\n    ///  - if CLOSED    -> publishes key (if missing)\\r\\n    ///  - if PROPOSED  -> finalizes (only if challenge window passed)\\r\\n    /// Returns true if it actually did something, false if it was a no-op.\\r\\n    /// @dev UPDATED: Non-reverting version. If time conditions aren't met, returns false.\\r\\n    function keeperNudge() external returns (bool) {\\r\\n        uint256 batchId = core.currentBatchId();\\r\\n        (, uint8 status, uint256 closeTime, , , uint256 challengeEndTime) = core.batches(batchId);\\r\\n\\r\\n        // If OPEN and closeTime reached \\u2192 close batch\\r\\n        if (status == 0 && block.timestamp >= closeTime) {\\r\\n            core.closeCurrentBatch();\\r\\n            _payCallerReward();\\r\\n            emit CloseTriggered(batchId, msg.sender);\\r\\n            return true;\\r\\n        }\\r\\n\\r\\n        // If CLOSED and key missing \\u2192 publish key\\r\\n        if (status == 1) {\\r\\n            bool has = shutter.hasKey(batchId);\\r\\n            if (!has) {\\r\\n                shutter.publishKey(batchId, \\\"auto-key-keeper\\\");\\r\\n                _payCallerReward();\\r\\n                emit KeyPublished(batchId, msg.sender);\\r\\n                return true;\\r\\n            }\\r\\n            return false;\\r\\n        }\\r\\n\\r\\n        // If PROPOSED and challenge window ended \\u2192 finalize\\r\\n        if (status == 2 && block.timestamp >= challengeEndTime) {\\r\\n            core.finalizeBatch(batchId);\\r\\n            _payCallerReward();\\r\\n            emit FinalizeTriggered(batchId, msg.sender);\\r\\n            return true;\\r\\n        }\\r\\n\\r\\n        // Otherwise: nothing to do \\u2014 just return false (no revert)\\r\\n        return false;\\r\\n    }\\r\\n\\r\\n    /// @notice Try to close the current batch if it's open and closeTime passed.\\r\\n    /// Anyone can call; pays reward to caller if configured and available.\\r\\n    function triggerCloseIfNeeded() external returns (bool ok) {\\r\\n        uint256 batchId = core.currentBatchId();\\r\\n        (, uint8 status, uint256 closeTime, , , ) = core.batches(batchId);\\r\\n\\r\\n        // status: 0 = OPEN, 1 = CLOSED, 2 = PROPOSED, 3 = FINALIZED, 4 = REVERTED\\r\\n        require(status == 0, \\\"not open\\\");\\r\\n        require(block.timestamp >= closeTime, \\\"closeTime not reached\\\");\\r\\n\\r\\n        core.closeCurrentBatch(); // calls the core's close function\\r\\n\\r\\n        _payCallerReward();\\r\\n\\r\\n        emit CloseTriggered(batchId, msg.sender);\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    /// @notice Publish key if batch is CLOSED and key doesn't exist. Caller provides the key string.\\r\\n    function triggerPublishKeyIfMissing(uint256 batchId, string calldata key) external returns (bool) {\\r\\n        (, uint8 status, , , , ) = core.batches(batchId);\\r\\n        require(status == 1, \\\"batch not closed\\\");\\r\\n\\r\\n        bool has = shutter.hasKey(batchId);\\r\\n        require(!has, \\\"key exists\\\");\\r\\n\\r\\n        shutter.publishKey(batchId, key);\\r\\n\\r\\n        _payCallerReward();\\r\\n        emit KeyPublished(batchId, msg.sender);\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    /// @notice Finalize a proposed batch once the challenge window expired.\\r\\n    function triggerFinalizeIfNeeded(uint256 batchId) external returns (bool) {\\r\\n        (, uint8 status, , , , uint256 challengeEndTime) = core.batches(batchId);\\r\\n        require(status == 2, \\\"not proposed\\\");\\r\\n        require(block.timestamp >= challengeEndTime, \\\"challenge not ended\\\");\\r\\n\\r\\n        core.finalizeBatch(batchId);\\r\\n\\r\\n        _payCallerReward();\\r\\n        emit FinalizeTriggered(batchId, msg.sender);\\r\\n        return true;\\r\\n    }\\r\\n\\r\\n    /// @dev internal helper to pay the caller if reward configured and contract has funds\\r\\n    function _payCallerReward() internal {\\r\\n        uint256 r = callerRewardWei;\\r\\n        if (r > 0 && address(this).balance >= r) {\\r\\n            payable(msg.sender).transfer(r);\\r\\n        }\\r\\n    }\\r\\n}\",\"keccak256\":\"0xe5e9b235060a673c60dc24bb405ed8daef89a5dc6d7bd798dae9af61cac37bcb\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60c060405234801561001057600080fd5b506040516112b43803806112b483398101604081905261002f916100d7565b6001600160a01b0383161580159061004f57506001600160a01b03821615155b61008e5760405162461bcd60e51b815260206004820152600c60248201526b7a65726f206164647265737360a01b604482015260640160405180910390fd5b6001600160a01b03928316608052911660a052600080546001600160a01b03191633179055600155610113565b80516001600160a01b03811681146100d257600080fd5b919050565b6000806000606084860312156100ec57600080fd5b6100f5846100bb565b9250610103602085016100bb565b9150604084015190509250925092565b60805160a05161111a61019a6000396000818161014a015281816108a90152818161097001528181610c8e0152610d4601526000818161022f015281816103840152818161040b01528181610528015281816105df01528181610712015281816107d801528181610a8001528181610b0901528181610bb90152610e25015261111a6000f3fe6080604052600436106100a05760003560e01c806382e7aa551161006457806382e7aa55146101845780638da5cb5b146101a8578063977e7be1146101c8578063a34fe83f146101e8578063bc43618214610208578063f2f4eb261461021d57600080fd5b806313af4035146100ac5780632e1a7d4d146100ce578063406ae922146100ee57806340df39b4146101185780635cb17fa11461013857600080fd5b366100a757005b600080fd5b3480156100b857600080fd5b506100cc6100c7366004610f30565b610251565b005b3480156100da57600080fd5b506100cc6100e9366004610f54565b610318565b3480156100fa57600080fd5b5061010361037f565b60405190151581526020015b60405180910390f35b34801561012457600080fd5b50610103610133366004610f54565b6105d8565b34801561014457600080fd5b5061016c7f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b03909116815260200161010f565b34801561019057600080fd5b5061019a60015481565b60405190815260200161010f565b3480156101b457600080fd5b5060005461016c906001600160a01b031681565b3480156101d457600080fd5b506101036101e3366004610f6d565b6107b5565b3480156101f457600080fd5b506100cc610203366004610f54565b610a1c565b34801561021457600080fd5b50610103610a7b565b34801561022957600080fd5b5061016c7f000000000000000000000000000000000000000000000000000000000000000081565b6000546001600160a01b031633146102845760405162461bcd60e51b815260040161027b90610fe9565b60405180910390fd5b6001600160a01b0381166102c35760405162461bcd60e51b815260040161027b906020808252600490820152637a65726f60e01b604082015260600190565b600080546001600160a01b0319166001600160a01b0383169081179091556040519081527fa2ea9883a321a3e97b8266c2b078bfeec6d50c711ed71f874a90d500ae2eaf36906020015b60405180910390a150565b6000546001600160a01b031633146103425760405162461bcd60e51b815260040161027b90610fe9565b600080546040516001600160a01b039091169183156108fc02918491818181858888f1935050505015801561037b573d6000803e3d6000fd5b5050565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316630a763da16040518163ffffffff1660e01b8152600401602060405180830381865afa1580156103e0573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610404919061100d565b90506000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031663b32c4d8d846040518263ffffffff1660e01b815260040161045791815260200190565b60c060405180830381865afa158015610474573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104989190611026565b50505092509250508160ff166000146104de5760405162461bcd60e51b81526020600482015260086024820152673737ba1037b832b760c11b604482015260640161027b565b804210156105265760405162461bcd60e51b815260206004820152601560248201527418db1bdcd9551a5b59481b9bdd081c995858da1959605a1b604482015260640161027b565b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316635ec08d996040518163ffffffff1660e01b8152600401600060405180830381600087803b15801561058157600080fd5b505af1158015610595573d6000803e3d6000fd5b505050506105a1610ed4565b604051339084907f6cbed1d9ca005927b04e14ffbc632d3a709eeed7060b4f348b93513ad96da81490600090a36001935050505090565b60008060007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031663b32c4d8d856040518263ffffffff1660e01b815260040161062b91815260200190565b60c060405180830381865afa158015610648573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061066c9190611026565b95505050509250508160ff166002146106b65760405162461bcd60e51b815260206004820152600c60248201526b1b9bdd081c1c9bdc1bdcd95960a21b604482015260640161027b565b804210156106fc5760405162461bcd60e51b815260206004820152601360248201527218da185b1b195b99d9481b9bdd08195b991959606a1b604482015260640161027b565b60405163e33491a760e01b8152600481018590527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169063e33491a790602401600060405180830381600087803b15801561075e57600080fd5b505af1158015610772573d6000803e3d6000fd5b5050505061077e610ed4565b604051339085907fd77d4e0ea2df1ffcc8fb44fbd79fa296d689aaefe38a8c4c3033a1f2628cbf1e90600090a35060019392505050565b60405163b32c4d8d60e01b81526004810184905260009081906001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000169063b32c4d8d9060240160c060405180830381865afa15801561081f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108439190611026565b505050509150508060ff166001146108905760405162461bcd60e51b815260206004820152601060248201526f18985d18da081b9bdd0818db1bdcd95960821b604482015260640161027b565b6040516348e612ef60e11b8152600481018690526000907f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906391cc25de90602401602060405180830381865afa1580156108f8573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061091c919061108c565b905080156109595760405162461bcd60e51b815260206004820152600a6024820152696b65792065786973747360b01b604482015260640161027b565b6040516386bb5db560e01b81526001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016906386bb5db5906109a9908990899089906004016110ae565b600060405180830381600087803b1580156109c357600080fd5b505af11580156109d7573d6000803e3d6000fd5b505050506109e3610ed4565b604051339087907fbcaa5939700bb5147181e91d7222a1d585a9f76d9f2ec7ab3812606e419bb9a590600090a350600195945050505050565b6000546001600160a01b03163314610a465760405162461bcd60e51b815260040161027b90610fe9565b60018190556040518181527ff21f38e64fee2a81048cdec1f96b0bcd2386027824ef7aecac152cd9845cbea29060200161030d565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316630a763da16040518163ffffffff1660e01b8152600401602060405180830381865afa158015610adc573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b00919061100d565b905060008060007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031663b32c4d8d856040518263ffffffff1660e01b8152600401610b5591815260200190565b60c060405180830381865afa158015610b72573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b969190611026565b9550505093509350508260ff166000148015610bb25750814210155b15610c6a577f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316635ec08d996040518163ffffffff1660e01b8152600401600060405180830381600087803b158015610c1257600080fd5b505af1158015610c26573d6000803e3d6000fd5b50505050610c32610ed4565b604051339085907f6cbed1d9ca005927b04e14ffbc632d3a709eeed7060b4f348b93513ad96da81490600090a3600194505050505090565b8260ff16600103610df7576040516348e612ef60e11b8152600481018590526000907f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906391cc25de90602401602060405180830381865afa158015610cdd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610d01919061108c565b905080610deb57604080516386bb5db560e01b8152600481018790526024810191909152600f60448201526e30baba3796b5b2bc96b5b2b2b832b960891b60648201527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906386bb5db590608401600060405180830381600087803b158015610d9257600080fd5b505af1158015610da6573d6000803e3d6000fd5b50505050610db2610ed4565b604051339086907fbcaa5939700bb5147181e91d7222a1d585a9f76d9f2ec7ab3812606e419bb9a590600090a360019550505050505090565b60009550505050505090565b8260ff166002148015610e0a5750804210155b15610ec95760405163e33491a760e01b8152600481018590527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169063e33491a790602401600060405180830381600087803b158015610e7157600080fd5b505af1158015610e85573d6000803e3d6000fd5b50505050610e91610ed4565b604051339085907fd77d4e0ea2df1ffcc8fb44fbd79fa296d689aaefe38a8c4c3033a1f2628cbf1e90600090a3600194505050505090565b600094505050505090565b6001548015801590610ee65750804710155b15610f1857604051339082156108fc029083906000818181858888f1935050505015801561037b573d6000803e3d6000fd5b50565b6001600160a01b0381168114610f1857600080fd5b600060208284031215610f4257600080fd5b8135610f4d81610f1b565b9392505050565b600060208284031215610f6657600080fd5b5035919050565b600080600060408486031215610f8257600080fd5b83359250602084013567ffffffffffffffff80821115610fa157600080fd5b818601915086601f830112610fb557600080fd5b813581811115610fc457600080fd5b876020828501011115610fd657600080fd5b6020830194508093505050509250925092565b6020808252600a908201526937b7363c9037bbb732b960b11b604082015260600190565b60006020828403121561101f57600080fd5b5051919050565b60008060008060008060c0878903121561103f57600080fd5b86519550602087015160ff8116811461105757600080fd5b809550506040870151935060608701519250608087015161107781610f1b565b8092505060a087015190509295509295509295565b60006020828403121561109e57600080fd5b81518015158114610f4d57600080fd5b83815260406020820152816040820152818360608301376000818301606090810191909152601f909201601f191601019291505056fea2646970667358221220a7e77a9c1df966e2251f381a2e3d8f7e4e78fdf838042b598553e5bbf171b2f564736f6c63430008140033",
+  "deployedBytecode": "0x6080604052600436106100a05760003560e01c806382e7aa551161006457806382e7aa55146101845780638da5cb5b146101a8578063977e7be1146101c8578063a34fe83f146101e8578063bc43618214610208578063f2f4eb261461021d57600080fd5b806313af4035146100ac5780632e1a7d4d146100ce578063406ae922146100ee57806340df39b4146101185780635cb17fa11461013857600080fd5b366100a757005b600080fd5b3480156100b857600080fd5b506100cc6100c7366004610f30565b610251565b005b3480156100da57600080fd5b506100cc6100e9366004610f54565b610318565b3480156100fa57600080fd5b5061010361037f565b60405190151581526020015b60405180910390f35b34801561012457600080fd5b50610103610133366004610f54565b6105d8565b34801561014457600080fd5b5061016c7f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b03909116815260200161010f565b34801561019057600080fd5b5061019a60015481565b60405190815260200161010f565b3480156101b457600080fd5b5060005461016c906001600160a01b031681565b3480156101d457600080fd5b506101036101e3366004610f6d565b6107b5565b3480156101f457600080fd5b506100cc610203366004610f54565b610a1c565b34801561021457600080fd5b50610103610a7b565b34801561022957600080fd5b5061016c7f000000000000000000000000000000000000000000000000000000000000000081565b6000546001600160a01b031633146102845760405162461bcd60e51b815260040161027b90610fe9565b60405180910390fd5b6001600160a01b0381166102c35760405162461bcd60e51b815260040161027b906020808252600490820152637a65726f60e01b604082015260600190565b600080546001600160a01b0319166001600160a01b0383169081179091556040519081527fa2ea9883a321a3e97b8266c2b078bfeec6d50c711ed71f874a90d500ae2eaf36906020015b60405180910390a150565b6000546001600160a01b031633146103425760405162461bcd60e51b815260040161027b90610fe9565b600080546040516001600160a01b039091169183156108fc02918491818181858888f1935050505015801561037b573d6000803e3d6000fd5b5050565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316630a763da16040518163ffffffff1660e01b8152600401602060405180830381865afa1580156103e0573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610404919061100d565b90506000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031663b32c4d8d846040518263ffffffff1660e01b815260040161045791815260200190565b60c060405180830381865afa158015610474573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104989190611026565b50505092509250508160ff166000146104de5760405162461bcd60e51b81526020600482015260086024820152673737ba1037b832b760c11b604482015260640161027b565b804210156105265760405162461bcd60e51b815260206004820152601560248201527418db1bdcd9551a5b59481b9bdd081c995858da1959605a1b604482015260640161027b565b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316635ec08d996040518163ffffffff1660e01b8152600401600060405180830381600087803b15801561058157600080fd5b505af1158015610595573d6000803e3d6000fd5b505050506105a1610ed4565b604051339084907f6cbed1d9ca005927b04e14ffbc632d3a709eeed7060b4f348b93513ad96da81490600090a36001935050505090565b60008060007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031663b32c4d8d856040518263ffffffff1660e01b815260040161062b91815260200190565b60c060405180830381865afa158015610648573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061066c9190611026565b95505050509250508160ff166002146106b65760405162461bcd60e51b815260206004820152600c60248201526b1b9bdd081c1c9bdc1bdcd95960a21b604482015260640161027b565b804210156106fc5760405162461bcd60e51b815260206004820152601360248201527218da185b1b195b99d9481b9bdd08195b991959606a1b604482015260640161027b565b60405163e33491a760e01b8152600481018590527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169063e33491a790602401600060405180830381600087803b15801561075e57600080fd5b505af1158015610772573d6000803e3d6000fd5b5050505061077e610ed4565b604051339085907fd77d4e0ea2df1ffcc8fb44fbd79fa296d689aaefe38a8c4c3033a1f2628cbf1e90600090a35060019392505050565b60405163b32c4d8d60e01b81526004810184905260009081906001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000169063b32c4d8d9060240160c060405180830381865afa15801561081f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108439190611026565b505050509150508060ff166001146108905760405162461bcd60e51b815260206004820152601060248201526f18985d18da081b9bdd0818db1bdcd95960821b604482015260640161027b565b6040516348e612ef60e11b8152600481018690526000907f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906391cc25de90602401602060405180830381865afa1580156108f8573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061091c919061108c565b905080156109595760405162461bcd60e51b815260206004820152600a6024820152696b65792065786973747360b01b604482015260640161027b565b6040516386bb5db560e01b81526001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016906386bb5db5906109a9908990899089906004016110ae565b600060405180830381600087803b1580156109c357600080fd5b505af11580156109d7573d6000803e3d6000fd5b505050506109e3610ed4565b604051339087907fbcaa5939700bb5147181e91d7222a1d585a9f76d9f2ec7ab3812606e419bb9a590600090a350600195945050505050565b6000546001600160a01b03163314610a465760405162461bcd60e51b815260040161027b90610fe9565b60018190556040518181527ff21f38e64fee2a81048cdec1f96b0bcd2386027824ef7aecac152cd9845cbea29060200161030d565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316630a763da16040518163ffffffff1660e01b8152600401602060405180830381865afa158015610adc573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b00919061100d565b905060008060007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031663b32c4d8d856040518263ffffffff1660e01b8152600401610b5591815260200190565b60c060405180830381865afa158015610b72573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610b969190611026565b9550505093509350508260ff166000148015610bb25750814210155b15610c6a577f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316635ec08d996040518163ffffffff1660e01b8152600401600060405180830381600087803b158015610c1257600080fd5b505af1158015610c26573d6000803e3d6000fd5b50505050610c32610ed4565b604051339085907f6cbed1d9ca005927b04e14ffbc632d3a709eeed7060b4f348b93513ad96da81490600090a3600194505050505090565b8260ff16600103610df7576040516348e612ef60e11b8152600481018590526000907f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906391cc25de90602401602060405180830381865afa158015610cdd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610d01919061108c565b905080610deb57604080516386bb5db560e01b8152600481018790526024810191909152600f60448201526e30baba3796b5b2bc96b5b2b2b832b960891b60648201527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316906386bb5db590608401600060405180830381600087803b158015610d9257600080fd5b505af1158015610da6573d6000803e3d6000fd5b50505050610db2610ed4565b604051339086907fbcaa5939700bb5147181e91d7222a1d585a9f76d9f2ec7ab3812606e419bb9a590600090a360019550505050505090565b60009550505050505090565b8260ff166002148015610e0a5750804210155b15610ec95760405163e33491a760e01b8152600481018590527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169063e33491a790602401600060405180830381600087803b158015610e7157600080fd5b505af1158015610e85573d6000803e3d6000fd5b50505050610e91610ed4565b604051339085907fd77d4e0ea2df1ffcc8fb44fbd79fa296d689aaefe38a8c4c3033a1f2628cbf1e90600090a3600194505050505090565b600094505050505090565b6001548015801590610ee65750804710155b15610f1857604051339082156108fc029083906000818181858888f1935050505015801561037b573d6000803e3d6000fd5b50565b6001600160a01b0381168114610f1857600080fd5b600060208284031215610f4257600080fd5b8135610f4d81610f1b565b9392505050565b600060208284031215610f6657600080fd5b5035919050565b600080600060408486031215610f8257600080fd5b83359250602084013567ffffffffffffffff80821115610fa157600080fd5b818601915086601f830112610fb557600080fd5b813581811115610fc457600080fd5b876020828501011115610fd657600080fd5b6020830194508093505050509250925092565b6020808252600a908201526937b7363c9037bbb732b960b11b604082015260600190565b60006020828403121561101f57600080fd5b5051919050565b60008060008060008060c0878903121561103f57600080fd5b86519550602087015160ff8116811461105757600080fd5b809550506040870151935060608701519250608087015161107781610f1b565b8092505060a087015190509295509295509295565b60006020828403121561109e57600080fd5b81518015158114610f4d57600080fd5b83815260406020820152816040820152818360608301376000818301606090810191909152601f909201601f191601019291505056fea2646970667358221220a7e77a9c1df966e2251f381a2e3d8f7e4e78fdf838042b598553e5bbf171b2f564736f6c63430008140033",
+  "devdoc": {
+    "details": "Lightweight on-chain keeper helper that allows anyone to trigger close/publish/finalize",
+    "kind": "dev",
+    "methods": {
+      "keeperNudge()": {
+        "details": "UPDATED: Non-reverting version. If time conditions aren't met, returns false."
+      }
+    },
+    "title": "KeeperFallback",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "keeperNudge()": {
+        "notice": "----------------------------------------------------------------------- 🔁 Single entry-point used by the Sentinel UI: keeperNudge() ----------------------------------------------------------------------- It inspects the current batch and:  - if OPEN      -> closes it (only if closeTime passed)  - if CLOSED    -> publishes key (if missing)  - if PROPOSED  -> finalizes (only if challenge window passed) Returns true if it actually did something, false if it was a no-op."
+      },
+      "setCallerReward(uint256)": {
+        "notice": "Set reward for callers who trigger actions (owner only)."
+      },
+      "setOwner(address)": {
+        "notice": "Allow owner to change owner"
+      },
+      "triggerCloseIfNeeded()": {
+        "notice": "Try to close the current batch if it's open and closeTime passed. Anyone can call; pays reward to caller if configured and available."
+      },
+      "triggerFinalizeIfNeeded(uint256)": {
+        "notice": "Finalize a proposed batch once the challenge window expired."
+      },
+      "triggerPublishKeyIfMissing(uint256,string)": {
+        "notice": "Publish key if batch is CLOSED and key doesn't exist. Caller provides the key string."
+      },
+      "withdraw(uint256)": {
+        "notice": "Withdraw ETH from contract (owner)"
+      }
+    },
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 57,
+        "contract": "contracts/KeeperFallback.sol:KeeperFallback",
+        "label": "owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 59,
+        "contract": "contracts/KeeperFallback.sol:KeeperFallback",
+        "label": "callerRewardWei",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

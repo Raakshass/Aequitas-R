@@ -1,0 +1,289 @@
+{
+  "address": "0x57c776951acaf2686Bb16eFD3160dFB3e2Df654F",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "ciphertext",
+          "type": "bytes"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "committer",
+          "type": "address"
+        }
+      ],
+      "name": "BatchEncrypted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "keyper",
+          "type": "address"
+        }
+      ],
+      "name": "KeyPublished",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "decryptionKeys",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "encryptedBatches",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBatchPayload",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        }
+      ],
+      "name": "hasKey",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "name": "publishKey",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "ciphertext",
+          "type": "bytes"
+        }
+      ],
+      "name": "submitEncryptedBatch",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x2fdeb29aec3194efd8ca894de49e6aba393493b1cfbf3c243b84b8b43f924137",
+  "receipt": {
+    "to": null,
+    "from": "0xDf3749a818C6799f79DA3440EB8015FDC3Bb5Da8",
+    "contractAddress": "0x57c776951acaf2686Bb16eFD3160dFB3e2Df654F",
+    "transactionIndex": 39,
+    "gasUsed": "437551",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xedcfd4de703c79742d1902a86b96efbe8952052007b6448662aea9f3137f714f",
+    "transactionHash": "0x2fdeb29aec3194efd8ca894de49e6aba393493b1cfbf3c243b84b8b43f924137",
+    "logs": [],
+    "blockNumber": 9777208,
+    "cumulativeGasUsed": "6468654",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "b7491054885af96b27dd88be89118638",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"ciphertext\",\"type\":\"bytes\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"committer\",\"type\":\"address\"}],\"name\":\"BatchEncrypted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"keyper\",\"type\":\"address\"}],\"name\":\"KeyPublished\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"decryptionKeys\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"encryptedBatches\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"}],\"name\":\"getBatchPayload\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"}],\"name\":\"hasKey\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"}],\"name\":\"publishKey\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"ciphertext\",\"type\":\"bytes\"}],\"name\":\"submitEncryptedBatch\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"In production this would be an external network (Shutter/Ferveo) with BLS keys.\",\"kind\":\"dev\",\"methods\":{\"publishKey(uint256,string)\":{\"details\":\"For the hackathon, this is open; in production, restricted to a Keyper set.\"},\"submitEncryptedBatch(uint256,bytes)\":{\"params\":{\"batchId\":\"The batch identifier (must match AequitasCore).\",\"ciphertext\":\"Opaque encrypted data produced client-side.\"}}},\"stateVariables\":{\"decryptionKeys\":{\"details\":\"batchId => decryption key (plain string for the hackathon demo)\"},\"encryptedBatches\":{\"details\":\"batchId => encrypted blob (opaque bytes from frontend)\"}},\"title\":\"MockShutter\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getBatchPayload(uint256)\":{\"notice\":\"Convenience getter used by the off-chain Solver.\"},\"hasKey(uint256)\":{\"notice\":\"Returns plaintext-availability status for a batch.\"},\"publishKey(uint256,string)\":{\"notice\":\"Publish the decryption key after the batch is closed.\"},\"submitEncryptedBatch(uint256,bytes)\":{\"notice\":\"Store encrypted order-flow for a batch.\"}},\"notice\":\"Simulated threshold-encryption network for Aequitas-R.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/MockShutter.sol\":\"MockShutter\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/MockShutter.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.20;\\r\\n\\r\\n/// @title MockShutter\\r\\n/// @notice Simulated threshold-encryption network for Aequitas-R.\\r\\n/// @dev In production this would be an external network (Shutter/Ferveo) with BLS keys.\\r\\ncontract MockShutter {\\r\\n    /// @dev batchId => encrypted blob (opaque bytes from frontend)\\r\\n    mapping(uint256 => bytes) public encryptedBatches;\\r\\n\\r\\n    /// @dev batchId => decryption key (plain string for the hackathon demo)\\r\\n    mapping(uint256 => string) public decryptionKeys;\\r\\n\\r\\n    event BatchEncrypted(uint256 indexed batchId, bytes ciphertext, address indexed committer);\\r\\n    event KeyPublished(uint256 indexed batchId, string key, address indexed keyper);\\r\\n\\r\\n    /// @notice Store encrypted order-flow for a batch.\\r\\n    /// @param batchId The batch identifier (must match AequitasCore).\\r\\n    /// @param ciphertext Opaque encrypted data produced client-side.\\r\\n    function submitEncryptedBatch(uint256 batchId, bytes calldata ciphertext) external {\\r\\n        // For simplicity, allow overwrite in demo; in prod, require empty slot.\\r\\n        encryptedBatches[batchId] = ciphertext;\\r\\n        emit BatchEncrypted(batchId, ciphertext, msg.sender);\\r\\n    }\\r\\n\\r\\n    /// @notice Publish the decryption key after the batch is closed.\\r\\n    /// @dev For the hackathon, this is open; in production, restricted to a Keyper set.\\r\\n    function publishKey(uint256 batchId, string calldata key) external {\\r\\n        decryptionKeys[batchId] = key;\\r\\n        emit KeyPublished(batchId, key, msg.sender);\\r\\n    }\\r\\n\\r\\n    /// @notice Returns plaintext-availability status for a batch.\\r\\n    function hasKey(uint256 batchId) external view returns (bool) {\\r\\n        return bytes(decryptionKeys[batchId]).length != 0;\\r\\n    }\\r\\n\\r\\n    /// @notice Convenience getter used by the off-chain Solver.\\r\\n    function getBatchPayload(uint256 batchId) external view returns (bytes memory, string memory) {\\r\\n        return (encryptedBatches[batchId], decryptionKeys[batchId]);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x34a15f87643589a07b93fbdd06c11ae2d851a340b0e896e4367119ffc487f1f3\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506106f4806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c8063111e512e146100675780632898d4201461009057806386bb5db5146100b157806391cc25de146100c65780639c9674b1146100e9578063b13c1ff9146100fc575b600080fd5b61007a6100753660046103dd565b61010f565b604051610087919061043c565b60405180910390f35b6100a361009e3660046103dd565b6101a9565b604051610087929190610456565b6100c46100bf3660046104cd565b6102e9565b005b6100d96100d43660046103dd565b61034c565b6040519015158152602001610087565b61007a6100f73660046103dd565b61036e565b6100c461010a3660046104cd565b610387565b6001602052600090815260409020805461012890610519565b80601f016020809104026020016040519081016040528092919081815260200182805461015490610519565b80156101a15780601f10610176576101008083540402835291602001916101a1565b820191906000526020600020905b81548152906001019060200180831161018457829003601f168201915b505050505081565b600081815260208181526040808320600190925290912081546060928392909182906101d490610519565b80601f016020809104026020016040519081016040528092919081815260200182805461020090610519565b801561024d5780601f106102225761010080835404028352916020019161024d565b820191906000526020600020905b81548152906001019060200180831161023057829003601f168201915b5050505050915080805461026090610519565b80601f016020809104026020016040519081016040528092919081815260200182805461028c90610519565b80156102d95780601f106102ae576101008083540402835291602001916102d9565b820191906000526020600020905b8154815290600101906020018083116102bc57829003601f168201915b5050505050905091509150915091565b60008381526001602052604090206103028284836105b8565b50336001600160a01b0316837fabeb43735b160ab12125be60931055c317d167915d971cc19e01c225fa44da70848460405161033f9291906106a2565b60405180910390a3505050565b6000818152600160205260408120805461036590610519565b15159392505050565b6000602081905290815260409020805461012890610519565b60008381526020819052604090206103a08284836105b8565b50336001600160a01b0316837fbda064b12613013f090a573246e85b9cdd79e761b3eb042848ab96086991c0f0848460405161033f9291906106a2565b6000602082840312156103ef57600080fd5b5035919050565b6000815180845260005b8181101561041c57602081850181015186830182015201610400565b506000602082860101526020601f19601f83011685010191505092915050565b60208152600061044f60208301846103f6565b9392505050565b60408152600061046960408301856103f6565b828103602084015261047b81856103f6565b95945050505050565b60008083601f84011261049657600080fd5b50813567ffffffffffffffff8111156104ae57600080fd5b6020830191508360208285010111156104c657600080fd5b9250929050565b6000806000604084860312156104e257600080fd5b83359250602084013567ffffffffffffffff81111561050057600080fd5b61050c86828701610484565b9497909650939450505050565b600181811c9082168061052d57607f821691505b60208210810361054d57634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052604160045260246000fd5b601f8211156105b357600081815260208120601f850160051c810160208610156105905750805b601f850160051c820191505b818110156105af5782815560010161059c565b5050505b505050565b67ffffffffffffffff8311156105d0576105d0610553565b6105e4836105de8354610519565b83610569565b6000601f84116001811461061857600085156106005750838201355b600019600387901b1c1916600186901b178355610672565b600083815260209020601f19861690835b828110156106495786850135825560209485019460019092019101610629565b50868210156106665760001960f88860031b161c19848701351681555b505060018560011b0183555b5050505050565b81835281816020850137506000828201602090810191909152601f909101601f19169091010190565b6020815260006106b6602083018486610679565b94935050505056fea264697066735822122090a67591431d2bfd1ee99d2015ac1ca7a4d5c3caa98f333846099021c6b4df7f64736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c8063111e512e146100675780632898d4201461009057806386bb5db5146100b157806391cc25de146100c65780639c9674b1146100e9578063b13c1ff9146100fc575b600080fd5b61007a6100753660046103dd565b61010f565b604051610087919061043c565b60405180910390f35b6100a361009e3660046103dd565b6101a9565b604051610087929190610456565b6100c46100bf3660046104cd565b6102e9565b005b6100d96100d43660046103dd565b61034c565b6040519015158152602001610087565b61007a6100f73660046103dd565b61036e565b6100c461010a3660046104cd565b610387565b6001602052600090815260409020805461012890610519565b80601f016020809104026020016040519081016040528092919081815260200182805461015490610519565b80156101a15780601f10610176576101008083540402835291602001916101a1565b820191906000526020600020905b81548152906001019060200180831161018457829003601f168201915b505050505081565b600081815260208181526040808320600190925290912081546060928392909182906101d490610519565b80601f016020809104026020016040519081016040528092919081815260200182805461020090610519565b801561024d5780601f106102225761010080835404028352916020019161024d565b820191906000526020600020905b81548152906001019060200180831161023057829003601f168201915b5050505050915080805461026090610519565b80601f016020809104026020016040519081016040528092919081815260200182805461028c90610519565b80156102d95780601f106102ae576101008083540402835291602001916102d9565b820191906000526020600020905b8154815290600101906020018083116102bc57829003601f168201915b5050505050905091509150915091565b60008381526001602052604090206103028284836105b8565b50336001600160a01b0316837fabeb43735b160ab12125be60931055c317d167915d971cc19e01c225fa44da70848460405161033f9291906106a2565b60405180910390a3505050565b6000818152600160205260408120805461036590610519565b15159392505050565b6000602081905290815260409020805461012890610519565b60008381526020819052604090206103a08284836105b8565b50336001600160a01b0316837fbda064b12613013f090a573246e85b9cdd79e761b3eb042848ab96086991c0f0848460405161033f9291906106a2565b6000602082840312156103ef57600080fd5b5035919050565b6000815180845260005b8181101561041c57602081850181015186830182015201610400565b506000602082860101526020601f19601f83011685010191505092915050565b60208152600061044f60208301846103f6565b9392505050565b60408152600061046960408301856103f6565b828103602084015261047b81856103f6565b95945050505050565b60008083601f84011261049657600080fd5b50813567ffffffffffffffff8111156104ae57600080fd5b6020830191508360208285010111156104c657600080fd5b9250929050565b6000806000604084860312156104e257600080fd5b83359250602084013567ffffffffffffffff81111561050057600080fd5b61050c86828701610484565b9497909650939450505050565b600181811c9082168061052d57607f821691505b60208210810361054d57634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052604160045260246000fd5b601f8211156105b357600081815260208120601f850160051c810160208610156105905750805b601f850160051c820191505b818110156105af5782815560010161059c565b5050505b505050565b67ffffffffffffffff8311156105d0576105d0610553565b6105e4836105de8354610519565b83610569565b6000601f84116001811461061857600085156106005750838201355b600019600387901b1c1916600186901b178355610672565b600083815260209020601f19861690835b828110156106495786850135825560209485019460019092019101610629565b50868210156106665760001960f88860031b161c19848701351681555b505060018560011b0183555b5050505050565b81835281816020850137506000828201602090810191909152601f909101601f19169091010190565b6020815260006106b6602083018486610679565b94935050505056fea264697066735822122090a67591431d2bfd1ee99d2015ac1ca7a4d5c3caa98f333846099021c6b4df7f64736f6c63430008140033",
+  "devdoc": {
+    "details": "In production this would be an external network (Shutter/Ferveo) with BLS keys.",
+    "kind": "dev",
+    "methods": {
+      "publishKey(uint256,string)": {
+        "details": "For the hackathon, this is open; in production, restricted to a Keyper set."
+      },
+      "submitEncryptedBatch(uint256,bytes)": {
+        "params": {
+          "batchId": "The batch identifier (must match AequitasCore).",
+          "ciphertext": "Opaque encrypted data produced client-side."
+        }
+      }
+    },
+    "stateVariables": {
+      "decryptionKeys": {
+        "details": "batchId => decryption key (plain string for the hackathon demo)"
+      },
+      "encryptedBatches": {
+        "details": "batchId => encrypted blob (opaque bytes from frontend)"
+      }
+    },
+    "title": "MockShutter",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "getBatchPayload(uint256)": {
+        "notice": "Convenience getter used by the off-chain Solver."
+      },
+      "hasKey(uint256)": {
+        "notice": "Returns plaintext-availability status for a batch."
+      },
+      "publishKey(uint256,string)": {
+        "notice": "Publish the decryption key after the batch is closed."
+      },
+      "submitEncryptedBatch(uint256,bytes)": {
+        "notice": "Store encrypted order-flow for a batch."
+      }
+    },
+    "notice": "Simulated threshold-encryption network for Aequitas-R.",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 2390,
+        "contract": "contracts/MockShutter.sol:MockShutter",
+        "label": "encryptedBatches",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint256,t_bytes_storage)"
+      },
+      {
+        "astId": 2395,
+        "contract": "contracts/MockShutter.sol:MockShutter",
+        "label": "decryptionKeys",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_uint256,t_string_storage)"
+      }
+    ],
+    "types": {
+      "t_bytes_storage": {
+        "encoding": "bytes",
+        "label": "bytes",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_uint256,t_bytes_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => bytes)",
+        "numberOfBytes": "32",
+        "value": "t_bytes_storage"
+      },
+      "t_mapping(t_uint256,t_string_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => string)",
+        "numberOfBytes": "32",
+        "value": "t_string_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

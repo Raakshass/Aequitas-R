@@ -21,3 +21,5 @@ node_modules
 
 # cli
 dist
+# Ignore Python virtualenv for solver
+packages/solver/.venv/

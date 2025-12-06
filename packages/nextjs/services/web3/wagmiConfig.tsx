@@ -1,16 +1,21 @@
+// packages/nextjs/services/web3/wagmiConfig.tsx
+
 import { wagmiConnectors } from "./wagmiConnectors";
-import { Chain, createClient, fallback, http } from "viem";
+import { type Chain, createClient, fallback, http } from "viem";
 import { hardhat, mainnet } from "viem/chains";
 import { createConfig } from "wagmi";
-import scaffoldConfig, { DEFAULT_ALCHEMY_API_KEY, ScaffoldConfig } from "~~/scaffold.config";
+import ScaffoldConfig from "~~/scaffold.config";
 import { getAlchemyHttpUrl } from "~~/utils/scaffold-eth";
 
+const scaffoldConfig = ScaffoldConfig;
 const { targetNetworks } = scaffoldConfig;
 
-// We always want to have mainnet enabled (ENS resolution, ETH price, etc). But only once.
-export const enabledChains = targetNetworks.find((network: Chain) => network.id === 1)
-  ? targetNetworks
-  : ([...targetNetworks, mainnet] as const);
+// Always include mainnet once (for ENS, prices, etc.)
+const hasMainnet = targetNetworks.some((network: Chain) => network.id === mainnet.id);
+
+export const enabledChains: readonly [Chain, ...Chain[]] = (
+  hasMainnet ? targetNetworks : [...targetNetworks, mainnet]
+) as unknown as readonly [Chain, ...Chain[]];
 
 export const wagmiConfig = createConfig({
   chains: enabledChains,
@@ -18,20 +23,32 @@ export const wagmiConfig = createConfig({
   ssr: true,
   client: ({ chain }) => {
     let rpcFallbacks = [http()];
-    const rpcOverrideUrl = (scaffoldConfig.rpcOverrides as ScaffoldConfig["rpcOverrides"])?.[chain.id];
+
+    // FIX APPLIED HERE:
+    // We cast rpcOverrides to a generic Record<number, string> so TypeScript
+    // allows us to index it with 'chain.id' (which is a generic number).
+    const rpcOverrideUrl = (
+      scaffoldConfig.rpcOverrides as Record<number, string> | undefined
+    )?.[chain.id];
+
     if (rpcOverrideUrl) {
+      // If you explicitly override, use that first
       rpcFallbacks = [http(rpcOverrideUrl), http()];
     } else {
+      // Otherwise try Alchemy first, then public RPC as backup
       const alchemyHttpUrl = getAlchemyHttpUrl(chain.id);
       if (alchemyHttpUrl) {
-        const isUsingDefaultKey = scaffoldConfig.alchemyApiKey === DEFAULT_ALCHEMY_API_KEY;
-        rpcFallbacks = isUsingDefaultKey ? [http(), http(alchemyHttpUrl)] : [http(alchemyHttpUrl), http()];
+        rpcFallbacks = [http(alchemyHttpUrl), http()];
       }
     }
+
     return createClient({
       chain,
       transport: fallback(rpcFallbacks),
-      ...(chain.id !== (hardhat as Chain).id ? { pollingInterval: scaffoldConfig.pollingInterval } : {}),
+      // Don’t spam-poll hardhat; use configured interval elsewhere
+      ...(chain.id !== hardhat.id
+        ? { pollingInterval: scaffoldConfig.pollingInterval }
+        : {}),
     });
   },
 });

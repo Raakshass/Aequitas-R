@@ -1,0 +1,157 @@
+{
+  "address": "0x1Ab8d57324Ca77e4949C154745f94CbFFFdd3F8B",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_a",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_b",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_c",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "oracleA",
+      "outputs": [
+        {
+          "internalType": "contract IMockOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "oracleB",
+      "outputs": [
+        {
+          "internalType": "contract IMockOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "oracleC",
+      "outputs": [
+        {
+          "internalType": "contract IMockOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "peek",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x0e25986b316a6367df268bb817861ebdb6ad923f26e748b021df3ef15ec1936c",
+  "receipt": {
+    "to": null,
+    "from": "0xDf3749a818C6799f79DA3440EB8015FDC3Bb5Da8",
+    "contractAddress": "0x1Ab8d57324Ca77e4949C154745f94CbFFFdd3F8B",
+    "transactionIndex": 35,
+    "gasUsed": "288977",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x678dc8664328e93d5affaecfd0d5456ea51b9b2d35941aee869a83ef608891fe",
+    "transactionHash": "0x0e25986b316a6367df268bb817861ebdb6ad923f26e748b021df3ef15ec1936c",
+    "logs": [],
+    "blockNumber": 9777206,
+    "cumulativeGasUsed": "5519325",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xc548c41E6D20753657DA0858ae24fAAdc98400cA",
+    "0xbBDbcD4755400B13276F1c45c4Fa63f25A6f0560",
+    "0xf89FbA93bF64459912744d8C69a9D6ac600ECA65"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "bff22e7902275af2bc165c399b7b0155",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_a\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_b\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_c\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"oracleA\",\"outputs\":[{\"internalType\":\"contract IMockOracle\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"oracleB\",\"outputs\":[{\"internalType\":\"contract IMockOracle\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"oracleC\",\"outputs\":[{\"internalType\":\"contract IMockOracle\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"peek\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Resilient to 1 compromised oracle.\",\"kind\":\"dev\",\"methods\":{},\"title\":\"Medianizer\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Aggregates 3 MockOracles and returns the Median + Freshness Timestamp.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Medianizer.sol\":\"Medianizer\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Medianizer.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.20;\\r\\n\\r\\ninterface IMockOracle {\\r\\n    function latestAnswer() external view returns (uint256);\\r\\n    // Assuming external oracles also have a timestamp function, \\r\\n    // or we use the block.timestamp of when they updated.\\r\\n    // For MockOracle, we'll just trust they update 'now'.\\r\\n}\\r\\n\\r\\n/**\\r\\n * @title Medianizer\\r\\n * @notice Aggregates 3 MockOracles and returns the Median + Freshness Timestamp.\\r\\n * @dev Resilient to 1 compromised oracle.\\r\\n */\\r\\ncontract Medianizer {\\r\\n\\r\\n    IMockOracle public oracleA;\\r\\n    IMockOracle public oracleB;\\r\\n    IMockOracle public oracleC;\\r\\n\\r\\n    constructor(address _a, address _b, address _c) {\\r\\n        oracleA = IMockOracle(_a);\\r\\n        oracleB = IMockOracle(_b);\\r\\n        oracleC = IMockOracle(_c);\\r\\n    }\\r\\n\\r\\n    // Returns (Price, LastUpdatedTimestamp)\\r\\n    function peek() external view returns (uint256, uint256) {\\r\\n        uint256[3] memory prices;\\r\\n        prices[0] = oracleA.latestAnswer();\\r\\n        prices[1] = oracleB.latestAnswer();\\r\\n        prices[2] = oracleC.latestAnswer();\\r\\n\\r\\n        // Bubble Sort (Simple for 3 elements)\\r\\n        if (prices[0] > prices[1]) (prices[0], prices[1]) = (prices[1], prices[0]);\\r\\n        if (prices[1] > prices[2]) (prices[1], prices[2]) = (prices[2], prices[1]);\\r\\n        if (prices[0] > prices[1]) (prices[0], prices[1]) = (prices[1], prices[0]);\\r\\n\\r\\n        // The Median is prices[1]\\r\\n        // For this demo, we assume \\\"freshness\\\" is the current block timestamp \\r\\n        // because MockOracles are updated in real-time by the user.\\r\\n        // In production, you'd query .latestTimestamp() from Chainlink.\\r\\n        return (prices[1], block.timestamp); \\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xac571726a290c18702655750ec1dee6a7ffa59ca47d96ff560f618ca2ecc9748\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516103da3803806103da83398101604081905261002f9161008d565b600080546001600160a01b039485166001600160a01b0319918216179091556001805493851693821693909317909255600280549190931691161790556100d0565b80516001600160a01b038116811461008857600080fd5b919050565b6000806000606084860312156100a257600080fd5b6100ab84610071565b92506100b960208501610071565b91506100c760408501610071565b90509250925092565b6102fb806100df6000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80631670cb6f1461005157806359e02dd7146100815780639bdff8eb1461009e578063c8f16b2f146100b1575b600080fd5b600054610064906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b6100896100c4565b60408051928352602083019190915201610078565b600154610064906001600160a01b031681565b600254610064906001600160a01b031681565b6000806100cf61028e565b60008054906101000a90046001600160a01b03166001600160a01b03166350d25bcd6040518163ffffffff1660e01b8152600401602060405180830381865afa158015610120573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061014491906102ac565b8152600154604080516350d25bcd60e01b815290516001600160a01b03909216916350d25bcd916004808201926020929091908290030181865afa158015610190573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101b491906102ac565b602080830191909152600254604080516350d25bcd60e01b815290516001600160a01b03909216926350d25bcd926004808401938290030181865afa158015610201573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061022591906102ac565b604082015260208101518151111561024557602081018051825190915281525b6040810151602082015111156102675760408101805160208301805190925290525b60208101518151111561028257602081018051825190915281525b60200151924292509050565b60405180606001604052806003906020820280368337509192915050565b6000602082840312156102be57600080fd5b505191905056fea264697066735822122073554208d4471bdd364254b7a196180c690ba2dbf3bd8c9013c6ef49439c6afb64736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80631670cb6f1461005157806359e02dd7146100815780639bdff8eb1461009e578063c8f16b2f146100b1575b600080fd5b600054610064906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b6100896100c4565b60408051928352602083019190915201610078565b600154610064906001600160a01b031681565b600254610064906001600160a01b031681565b6000806100cf61028e565b60008054906101000a90046001600160a01b03166001600160a01b03166350d25bcd6040518163ffffffff1660e01b8152600401602060405180830381865afa158015610120573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061014491906102ac565b8152600154604080516350d25bcd60e01b815290516001600160a01b03909216916350d25bcd916004808201926020929091908290030181865afa158015610190573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101b491906102ac565b602080830191909152600254604080516350d25bcd60e01b815290516001600160a01b03909216926350d25bcd926004808401938290030181865afa158015610201573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061022591906102ac565b604082015260208101518151111561024557602081018051825190915281525b6040810151602082015111156102675760408101805160208301805190925290525b60208101518151111561028257602081018051825190915281525b60200151924292509050565b60405180606001604052806003906020820280368337509192915050565b6000602082840312156102be57600080fd5b505191905056fea264697066735822122073554208d4471bdd364254b7a196180c690ba2dbf3bd8c9013c6ef49439c6afb64736f6c63430008140033",
+  "devdoc": {
+    "details": "Resilient to 1 compromised oracle.",
+    "kind": "dev",
+    "methods": {},
+    "title": "Medianizer",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Aggregates 3 MockOracles and returns the Median + Freshness Timestamp.",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 1030,
+        "contract": "contracts/Medianizer.sol:Medianizer",
+        "label": "oracleA",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_contract(IMockOracle)1026"
+      },
+      {
+        "astId": 1033,
+        "contract": "contracts/Medianizer.sol:Medianizer",
+        "label": "oracleB",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_contract(IMockOracle)1026"
+      },
+      {
+        "astId": 1036,
+        "contract": "contracts/Medianizer.sol:Medianizer",
+        "label": "oracleC",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_contract(IMockOracle)1026"
+      }
+    ],
+    "types": {
+      "t_contract(IMockOracle)1026": {
+        "encoding": "inplace",
+        "label": "contract IMockOracle",
+        "numberOfBytes": "20"
+      }
+    }
+  }
+}
